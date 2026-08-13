@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mistake Collection"
+  short_description: "Build verified mistake-book PDFs from problem photos."
+  default_prompt: "Use $mistake-collection to reconstruct these problem photos into synchronized question-only and detailed answer PDFs."

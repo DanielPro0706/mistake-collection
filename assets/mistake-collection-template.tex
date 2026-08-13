@@ -1,0 +1,33 @@
+\documentclass[UTF8,fontset=fandol,zihao=5]{ctexart}
+\usepackage[a4paper,top=1.55cm,bottom=1.65cm,left=1.25cm,right=1.55cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,xcolor,enumitem,setspace,graphicx,changepage,tikz}
+\usetikzlibrary{arrows.meta,calc}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.28em}
+\setstretch{1.08}
+\definecolor{mcred}{RGB}{215,0,0}
+\newcommand{\mctitle}[1]{{\zihao{2}\bfseries #1\par\vspace{0.35em}}}
+\newcommand{\mclabel}[1]{\textbf{#1}}
+\newenvironment{mcbody}{\begin{adjustwidth}{1em}{0pt}}{\end{adjustwidth}}
+\providecommand{\showanswers}{1}
+\ifnum\showanswers=1
+  \newenvironment{mcanswer}{\par\begingroup\color{mcred}}{\par\endgroup}
+\else
+  \usepackage{comment}
+  \excludecomment{mcanswer}
+\fi
+\begin{document}
+\mctitle{第X章\hspace{0.5em}章节名称}
+\begin{mcbody}
+\mclabel{1. 题目名称}
+
+黑色题目正文与原题图。
+
+\begin{mcanswer}
+\mclabel{答案：}在此写答案。
+
+\mclabel{解析：}在此写逐步解析、依据、易错点，并在必要时添加红色解释图。
+\end{mcanswer}
+\end{mcbody}
+\end{document}
