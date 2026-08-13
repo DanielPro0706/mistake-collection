@@ -2,6 +2,8 @@
 
 Read this file when producing answers, detailed analysis, large-problem steps, or answer-side diagrams.
 
+All teaching material belongs to the answer layer. Knowledge points, tested concepts, formula reminders, method hints, and common-error notes must be placed inside the conditional red solution environment so none can appear in the question-only PDF.
+
 ## Short items
 
 A short explanation should normally contain four parts:
@@ -67,3 +69,5 @@ The red explanatory diagram supplements the black question figure. It must not r
 - Permit long answers to continue across a page rather than compressing them.
 - Avoid decorative boxes, watermarks, automatic summaries, or a separate conclusion section.
 - Use black only for question-side material and red only for answer-side material.
+- In the question-only build, retain only the chapter heading, actual problem statements, choices or blanks, and figures required by those statements.
+- Do not put a knowledge-point banner or solution-oriented introduction before a black problem block.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Mistake Collection"
-  short_description: "Rebuild problem photos as a verified two-version mistake book."
-  default_prompt: "Use $mistake-collection as a self-contained workflow to create a faithful question-only PDF and a detailed red-solution PDF from these source images."
+  short_description: "Create a strict questions-only PDF plus a detailed solution PDF."
+  default_prompt: "Use $mistake-collection to create a strict question-only PDF with no knowledge points or hints, plus a synchronized detailed red-solution PDF from these source images."

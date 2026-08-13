@@ -6,10 +6,12 @@ Read this file when photographs, scans, handwriting, diagrams, or cropped text a
 
 Create one row for each visible target problem, not one row for each image.
 
-| Order | Source file | Printed number | Text complete | Figures | State checks | Uncertainty |
-|---:|---|---|---|---:|---|---|
+| Order | Source file | Printed number | Question boundary | Text complete | Figures | State checks | Uncertainty |
+|---:|---|---|---|---|---:|---|---|
 
 Record separate rows when one photograph contains several problems. Record the same problem once when it spans several photographs, noting all source files.
+
+Mark where the actual question begins and ends. Exclude surrounding chapter explanations, knowledge-point summaries, worked-example commentary, method hints, difficulty labels, and handwritten notes unless the user explicitly identifies them as part of the question. A formula, table, condition, or instruction inside the problem block remains part of the question and must not be removed.
 
 ## Image preparation
 
