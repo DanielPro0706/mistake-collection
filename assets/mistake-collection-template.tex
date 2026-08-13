@@ -12,7 +12,7 @@
 \providecommand{\withsolutions}{1}
 
 \newcommand{\chapterheading}[2]{%
-  {\centering\zihao{2}\bfseries 第#1章\quad #2\par}%
+  \par\noindent{\zihao{2}\bfseries 第#1章\quad #2}\par
   \vspace{0.8em}}
 \newenvironment{problem}[1]{%
   \par\medskip\noindent\textbf{#1}\par\smallskip
@@ -27,7 +27,7 @@
 \fi
 
 \newcommand{\formalstep}[1]{#1}
-\newcommand{\why}[1]{\footnotesize\textbf{步骤说明：}#1}
+\newcommand{\why}[1]{\footnotesize #1}
 
 \begin{document}
 

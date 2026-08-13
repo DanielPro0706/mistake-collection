@@ -38,7 +38,7 @@ Never skip a transformation that a middle-school student is expected to show. Do
 
 ## Side explanations
 
-For long solutions, place formal student working on the left and smaller red commentary on the right. Align each commentary block with the step it explains. The commentary should answer one of:
+For calculation, experiment, proof, geometry, circuit-design, and other long solutions, place formal student working on the left and smaller red commentary on the right. Align each commentary block with the step it explains. Do not begin every commentary block with repeated labels such as `原因：`, `说明：`, or `步骤说明：`; let the aligned placement carry that meaning. The commentary should answer one of:
 
 - Why is this relation or construction allowed?
 - Where did this value come from?
@@ -64,8 +64,10 @@ The red explanatory diagram supplements the black question figure. It must not r
 ## Page composition
 
 - Use A4 portrait unless requested otherwise.
+- Keep the chapter title left-aligned by default, matching any existing collection in the target folder.
 - Keep margins comfortable and typography consistent.
 - Keep each problem near its source figure.
+- Keep source figures compact and subordinate to the text; reduce any image that dominates the page or forces an otherwise avoidable page break.
 - Permit long answers to continue across a page rather than compressing them.
 - Avoid decorative boxes, watermarks, automatic summaries, or a separate conclusion section.
 - Use black only for question-side material and red only for answer-side material.
