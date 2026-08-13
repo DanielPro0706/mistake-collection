@@ -35,7 +35,7 @@ Do not add a cover, author, date, abstract, page decoration, concluding summary 
 
 ### 1. Establish scope
 
-List all source files in the user's order. Inspect each manually at full resolution, including HEIC originals rather than relying only on thumbnails or OCR. Make an internal register with one entry per visible target problem:
+List all source files in the user's order. When the user specifies filename order, sort naturally by filename (for example, `IMG_3405` before `IMG_3406`) rather than by upload order, printed problem number, or inferred topic. Inspect each manually at full resolution, including HEIC originals rather than relying only on thumbnails or OCR. Make an internal register with one entry per visible target problem:
 
 - source filename and visible problem number;
 - exact text, choices, blanks, formulae, and units;
@@ -43,6 +43,8 @@ List all source files in the user's order. Inspect each manually at full resolut
 - the exact start and end of the question block, separated from surrounding knowledge points, examples, hints, or commentary;
 - visual details that affect the answer;
 - cropped, obscured, or uncertain content.
+
+Record the source filename beside each internal problem block while editing so later reordering cannot detach a question from its figure. When one problem spans consecutive photos, register all contributing filenames once; when one photo contains multiple problems, retain their top-to-bottom order within that filename.
 
 Count problems by visible problem blocks, then count them again by the register. Resolve any mismatch before typesetting.
 
