@@ -38,7 +38,7 @@ Never skip a transformation that a middle-school student is expected to show. Do
 
 ## Side explanations
 
-For calculation, experiment, proof, geometry, circuit-design, and other long solutions, place formal student working on the left and smaller red commentary on the right. Align each commentary block with the step it explains. Do not begin every commentary block with repeated labels such as `原因：`, `说明：`, or `步骤说明：`; let the aligned placement carry that meaning. The commentary should answer one of:
+For calculation, experiment, proof, geometry, circuit-design, and other long solutions, place formal student working on the left and smaller commentary on the right. Align each commentary block with the step it explains. Do not begin commentary blocks with repeated labels such as `原因：`, `说明：`, or `步骤说明：`; let the aligned placement carry that meaning. Use a muted secondary red for commentary, distinct from the main bright-red solution color, so the two roles are visually clear without adding a label. The commentary should answer one of:
 
 - Why is this relation or construction allowed?
 - Where did this value come from?

@@ -78,7 +78,7 @@ For every item:
 
 The tested concept is internal reasoning and answer-side teaching material. If it is written into the document, place it inside the red answer layer, never before the black question in shared content.
 
-For a calculation, experiment, proof, geometry, or circuit-design problem, show classroom-standard working on the left and align a smaller explanatory note on the right of each step. The note should explain purpose, rule, data source, or common failure mode, but do not prefix every note with repeated labels such as `原因：` or `步骤说明：`. Add a small red answer diagram when a direction, completed connection, auxiliary line, ray, force, state change, or instrument reading is clearer visually.
+For a calculation, experiment, proof, geometry, or circuit-design problem, show classroom-standard working on the left and align a smaller explanatory note on the right of each step. The note should explain purpose, rule, data source, or common failure mode, but do not prefix commentary with repeated labels such as `原因：`, `说明：`, or `步骤说明：`. Render the commentary in a muted secondary red that is visibly different from the main bright-red solution while remaining easy to read. Add a small red answer diagram when a direction, completed connection, auxiliary line, ray, force, state change, or instrument reading is clearer visually.
 
 Use [references/solution-writing.md](references/solution-writing.md) for short-answer depth, large-problem formatting, and side explanations.
 
