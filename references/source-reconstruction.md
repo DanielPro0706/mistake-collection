@@ -29,13 +29,13 @@ Exposure and perspective correction may improve readability, but must not erase 
 
 ### Redraw or edit with ImageGen
 
-Prefer ImageGen for as many visible figures as can be reproduced without changing problem information. Pass the original crop as the reference and request clean black-and-white textbook line art. For apparatus, physical scenes, biological subjects, irregular shapes, and multi-state illustrations, this is usually the first method to try.
+Use ImageGen as the first reconstruction method for every feasible visible figure. Crop the printed figure tightly from the original photo, inspect that crop, and pass it as the reference rather than prompting from the transcribed question alone. For apparatus, physical scenes, biological subjects, irregular shapes, and multi-state illustrations, do not skip directly to a deterministic redraw merely because it is faster.
 
-Keep generated text to a minimum. Ask ImageGen to omit readings, formulas, units, panel captions, and prose when those can be overlaid exactly in LaTeX. State all invariant positions, connections, immersion states, directions, and relative heights in the prompt. Inspect the first result manually; retry any changed invariant rather than accepting a merely attractive drawing.
+Keep generated text to a minimum. Ask ImageGen to omit readings, formulas, units, panel captions, and prose when those can be overlaid exactly in LaTeX. State all invariant positions, connections, immersion states, directions, relative heights, and ratios in the prompt. Inspect the first result manually against the crop. If an invariant is wrong, make one targeted ImageGen retry that names only the failed state while locking the correct parts. Do not accept a merely attractive drawing.
 
 ### Redraw with LaTeX/TikZ
 
-Redraw only when the figure can be specified without interpretation. Typical candidates are a simple circuit, geometric construction, labelled arrow, axis, or small data table.
+Fall back to LaTeX/TikZ only when the initial ImageGen attempt and targeted retry cannot preserve an answer-bearing invariant and the figure can be specified without interpretation. Typical reasons include an exact immersion ratio, waterline alignment, scale reading, circuit topology, contact state, or arrow endpoint. Record the failed invariant in working notes before switching methods.
 
 After rendering, compare:
 
@@ -74,6 +74,8 @@ Compare source and reconstruction systematically:
 4. state-bearing movable parts;
 5. all scale ticks and the indicated reading;
 6. figure caption and subfigure labels.
+
+For multi-state buoyancy figures, additionally check each panel for water level, how much of the object is above or below the surface, whether its top edge is exactly level with the surface, whether it touches the bottom, and whether a string is absent, slack and curved, or taut and straight. These states must agree with both the printed figure and the question wording.
 
 Finally inspect the figure inside the PDF. A faithful asset still fails if it is cropped, blurred by scaling, separated from its problem, or made disproportionately large.
 

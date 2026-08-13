@@ -58,12 +58,12 @@ Use [references/source-reconstruction.md](references/source-reconstruction.md) f
 
 ### 3. Reconstruct each figure
 
-Attempt an ImageGen redraw for every figure that can be reconstructed faithfully from the visible source. Give the source crop as the reference image and request clean black-and-white textbook line art. Keep exact words, numerical readings, units, and panel captions out of the generated bitmap when practical; overlay them deterministically in LaTeX.
+Attempt an ImageGen redraw first for every figure that can be reconstructed faithfully from the visible source. Crop the printed figure from the original photo, give that crop to ImageGen as the reference image, and request clean black-and-white textbook line art. Do not replace ImageGen with TikZ merely because the diagram looks simple. Keep exact words, numerical readings, units, and panel captions out of the generated bitmap when practical; overlay them deterministically in LaTeX.
 
 Choose separately for every figure:
 
-- **ImageGen redraw/edit:** preferred for apparatus, physical scenes, biological figures, irregular outlines, and multi-state illustrations when the visible structure can be preserved. State all invariants in the prompt and compare the result with the original. Reject visually attractive results that alter problem information.
-- **LaTeX/TikZ redraw:** use when topology, scale ticks, exact geometry, or a state-bearing symbol must be encoded deterministically, or when ImageGen cannot preserve the required state.
+- **ImageGen redraw/edit:** always make the first serious attempt for feasible apparatus, physical scenes, biological figures, irregular outlines, and multi-state illustrations. State all invariants in the prompt, inspect the output, and compare it panel by panel with the original. If one invariant is wrong, retry ImageGen once with a targeted correction. Reject visually attractive results that alter problem information.
+- **LaTeX/TikZ redraw:** use only after the ImageGen attempt and targeted retry still fail to preserve an answer-bearing state, exact ratio, topology, scale tick, reading, contact, direction, or connection. Record which invariant forced the deterministic fallback; never accept an approximate ImageGen diagram when the visual state affects the answer.
 - **Source-based restoration:** use for complex or state-sensitive printed figures. Crop the original figure, remove handwriting and paper artifacts, correct exposure and perspective, and preserve the printed geometry.
 
 Keep images no larger than necessary for comfortable reading. Start near `0.25–0.40\textwidth` for one compact apparatus, `0.45–0.60\textwidth` for a paired figure, and `0.65–0.80\textwidth` for a wide multi-state figure. Shrink any figure that dominates the question or creates avoidable page breaks. Adjust from the rendered page, not from the raw pixel dimensions.
@@ -90,11 +90,13 @@ Maintain one principal `.tex` source with an answer switch so question text and 
 
 ### 6. Verify before delivery
 
+Perform this verification after the final rebuild, not only during drafting. Reopen the original source images, the final question-only PDF, and the final answer PDF; do not rely on memory, earlier previews, or a successful compile.
+
 Pass every gate:
 
-- **Inventory:** each registered problem and figure appears once, in order.
+- **Inventory and order:** each registered problem and figure appears once. Compare the final sequence against the natural filename order and the source-filename marker beside every problem block; confirm that multi-photo problems and multiple problems in one photo remain correctly grouped.
 - **Transcription:** compare wording, punctuation, blanks, options, symbols, units, and labels against the original.
-- **Figure:** compare the original and final figure at high zoom, explicitly checking state-sensitive details.
+- **Figure:** compare every original crop and final figure at high zoom, panel by panel. Explicitly check water level, immersion fraction, top-edge alignment, contact or separation, slack versus taut string, arrow direction, connectivity, labels, readings, and all other state-sensitive details. A figure that merely looks plausible does not pass.
 - **Solution:** recompute answers and confirm the reasoning uses the requested school-level method.
 - **Color:** all question material is black; all answer-side material is red.
 - **Question-only purity:** inspect every page and confirm it contains no knowledge point, tested-concept label, formula reminder, method hint, difficulty tag, answer, analysis, common-error warning, or answer-side figure.

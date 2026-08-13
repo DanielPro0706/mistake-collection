@@ -1,4 +1,4 @@
 interface:
   display_name: "Mistake Collection"
-  short_description: "Manually rebuild photos into two verified mistake PDFs."
-  default_prompt: "Use $mistake-collection to manually inspect these source images, redraw feasible figures with ImageGen, and create synchronized question-only and red-solution PDFs with aligned step commentary."
+  short_description: "Manually rebuild and fully verify mistake PDFs."
+  default_prompt: "Use $mistake-collection to inspect source photos manually, try ImageGen first for every feasible figure, and fully verify the ordered question-only and answer PDFs before delivery."
