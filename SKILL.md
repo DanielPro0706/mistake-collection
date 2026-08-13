@@ -1,98 +1,93 @@
 ---
 name: mistake-collection
-description: Create verified Chinese mistake-book handouts from photographed or scanned middle-school problems, with faithful editable LaTeX reconstruction, cleaned or redrawn figures, a black question-only PDF, and a black-question/red-answer PDF containing detailed student-standard solutions and step explanations. Use when users ask for 错题整理、错题本、题目重排、纯题目版与答案版、初中规范步骤、题图去笔迹、ImageGen 清图、LaTeX/PDF 交付，or later append large problems to the same collection.
+description: Build a self-contained Chinese mistake collection from photographed or scanned school problems. Reproduce every requested question and figure faithfully, create both a black question-only PDF and a black-question/red-solution PDF, write independently checked detailed solutions with student-standard working and step-level explanations, and verify the rendered pages against the source images. Use for 错题整理、错题本制作、试题照片重排、题图清理、双版本练习册、详细答案解析、初中规范解题步骤、or adding later problems to an existing collection.
 ---
 
 # Mistake Collection
 
-Turn source photographs into a reusable, auditable mistake collection. Accuracy outranks visual polish.
+Build the collection directly from the user's current source files and instructions. This skill is self-contained: do not load, quote, adapt, or depend on another problem-summary or note-making skill.
 
-## Core contract
+## Deliverables
 
-- Treat every source image as evidence. Reconstruct only visible target problems; do not infer hidden text.
-- Preserve the exact problem wording, blanks, choices, symbols, numbering, units, labels, diagram state, needle angle, switch position, connection, and requested order.
-- Mark genuinely unreadable content as uncertain and ask before final delivery. Never silently guess.
-- Produce two synchronized PDFs by default:
-  1. question-only: black problem text and clean figures, no answers;
-  2. answer-and-explanation: the same black problems and figures, with answers, derivations, step explanations, and answer-side diagrams in red.
-- Do not add a separate summary sentence unless requested.
-- Keep source and output under the user-specified folder. If no folder is specified, create `错题整理` in the current writable workspace.
-- Delete nothing permanently. Move obsolete outputs and intermediates to the macOS Trash when cleanup is required.
+Unless the user says otherwise, create a folder named `错题整理` and deliver:
 
-## Required companion skills
+- one editable LaTeX project;
+- one `纯题目版.pdf` containing black questions and clean source figures only;
+- one `答案解析版.pdf` containing the identical black questions, followed by red answers, red reasoning, and red explanatory figures when useful;
+- final cleaned figure assets required to rebuild the PDFs.
 
-- Use the PDF skill for compilation, rendering, and visual QA.
-- Use the image-generation skill for bitmap restoration or removal of handwriting when a diagram is complex or state-sensitive.
-- Use web search only when a standard solution method needs authoritative confirmation; prefer original curriculum, official teaching, or reputable educational sources, then rewrite the reasoning independently in LaTeX.
+Do not add a cover, author, date, abstract, page decoration, concluding summary sentence, or unrelated teaching notes.
 
-## Workflow
+## Non-negotiable accuracy rules
 
-### 1. Inventory before writing
+1. Use the supplied photos as the source of truth. Do not complete cropped or unreadable wording from memory.
+2. Preserve numbering, wording, blanks, choices, mathematical symbols, units, labels, line order, and requested chapter title.
+3. Preserve problem-bearing visual state: connections, switch position, contact, needle direction and endpoint, scale marks, polarity, arrows, leaf angles, rays, and relative placement.
+4. Never treat visible handwriting as authoritative. Solve each item independently and check the result.
+5. Never omit a problem merely because it shares a photograph with another problem.
+6. If a region remains ambiguous after inspecting the original at full resolution, identify the exact ambiguity and ask the user before final delivery.
+7. Move obsolete files to Trash; do not permanently delete user material.
 
-1. List every supplied file in the user's intended order.
-2. Convert HEIC or unsupported images to lossless working previews without changing the originals.
-3. Inspect every image at readable resolution.
-4. Create a source ledger containing, for each target item:
-   - source filename;
-   - visible problem number and exact text;
-   - all blanks/options/units;
-   - required figures and state-sensitive details;
-   - unreadable or cropped regions.
-5. Count target items twice: once from filenames and once from visible problem blocks. Resolve mismatches before finalizing.
+## Process
 
-Read [references/source-and-figure-fidelity.md](references/source-and-figure-fidelity.md) whenever figures, handwriting removal, cropping, or ImageGen restoration is involved.
+### 1. Establish scope
 
-### 2. Choose a figure strategy per figure
+List all source files in the user's order. Inspect each at full resolution, including HEIC originals rather than relying only on thumbnails. Make an internal register with one entry per visible target problem:
 
-Use the least risky strategy:
+- source filename and visible problem number;
+- exact text, choices, blanks, formulae, and units;
+- every required figure;
+- visual details that affect the answer;
+- cropped, obscured, or uncertain content.
 
-- Rebuild simple geometry, circuits, arrows, tables, and schematic relationships in TikZ only when every state and label can be reproduced exactly.
-- Restore a complex or state-sensitive printed figure from the source when it contains meter needles, apparatus contact, switches, rays, force directions, measurements, nontrivial curves, or details that are easy to misdraw.
-- For an ImageGen restoration, crop to the figure first and state invariants explicitly. Remove handwriting, stains, surrounding prose, shadows, and paper clutter; preserve geometry and experimental state.
-- Inspect the edited image against the source. Reject and redo any output that changes a needle angle, contact point, label, scale, connection, leaf angle, switch state, or other problem-bearing feature.
-- Keep figures readable but subordinate to the problem. Start near 35–45% text width for a compact apparatus and 65–75% for a wide paired meter; enlarge only when labels become unreadable.
+Count problems by visible problem blocks, then count them again by the register. Resolve any mismatch before typesetting.
 
-### 3. Reconstruct the problem
+### 2. Transcribe before solving
 
-- Use editable Chinese LaTeX for all normal text and formulas.
-- Keep problem text black.
-- Reproduce blanks with explicit underlines, choices with the original labels, and units in proper math typography.
-- Keep the chapter heading exact. Use a visible space in headings such as `第十三章\hspace{0.5em}简单电路`.
-- Do not include author, date, abstract, cover page, headers, footers, or `\maketitle`.
+Transcribe problem text into editable Chinese LaTeX. Keep the question layer black. Use explicit LaTeX for formulae, underlines, tables, simple circuits, and labels. Compare the transcription against the source character by character before writing answers.
 
-### 4. Write the answer and explanation
+Use [references/source-reconstruction.md](references/source-reconstruction.md) for image handling, diagram selection, and source comparison.
 
-- Solve independently before trusting handwriting visible in the source.
-- Check the result against the question conditions and the restored diagram.
-- For short questions, explain the governing fact, apply it to each blank/option, exclude distractors, and state the common mistake.
-- For large problems, use middle-school-standard steps such as `已知`、`求`、`解`、`答`, or the subject-appropriate equivalent. Do not jump over substitutions, units, sign/direction decisions, or conclusions.
-- Beside or immediately after each step, explain why the step is valid, what law or definition is used, and what mistake it prevents.
-- Add a compact answer-side figure when direction, wiring, state change, force, optics, geometry, or data reading is materially clearer visually. Keep this explanatory figure red and separate from the black source figure.
-- Keep all answers and explanations red. Do not add unrequested boxes.
+### 3. Reconstruct each figure
 
-Read [references/solutions-and-layout.md](references/solutions-and-layout.md) for large-problem structure, side explanations, answer diagrams, and the synchronized two-version template.
+Choose separately for every figure:
 
-### 5. Build two synchronized versions
+- **LaTeX/TikZ redraw:** use for simple deterministic diagrams whose topology, labels, and state can be encoded exactly.
+- **Source-based restoration:** use for complex or state-sensitive printed figures. Crop the original figure, remove handwriting and paper artifacts, correct exposure and perspective, and preserve the printed geometry.
+- **Image generation/editing:** use only as an image-edit operation based on the supplied crop. State all invariants in the prompt and compare the result with the original. Reject visually attractive results that alter problem information.
 
-- Maintain one primary LaTeX source with a `\showanswers` switch.
-- Build the answer version with answers enabled.
-- Build a tiny wrapper source with `\showanswers=0` for the question-only version.
-- Use descriptive stable filenames ending in `-纯题目版.pdf` and `-答案解析版.pdf`.
-- Keep the editable `.tex` files and any final cleaned figure assets beside the PDFs unless the user gives another layout.
+Keep images no larger than necessary for comfortable reading. A compact single apparatus normally belongs near one-third to one-half of the text width; a wide paired figure may use roughly two-thirds. Adjust from the rendered page, not from the raw pixel dimensions.
 
-Use [assets/mistake-collection-template.tex](assets/mistake-collection-template.tex) as the starting template when no established project template exists.
+### 4. Author answers independently
 
-### 6. Verification gates
+For every item:
 
-Do not deliver until all gates pass:
+1. determine the tested concept;
+2. solve without using handwritten answers from the photo;
+3. verify numerical work, units, direction, sign, range, circuit node, and diagram state;
+4. write the final answer in red;
+5. write enough red explanation that a student can reproduce the method rather than memorize the result.
 
-1. **Source completeness:** every target problem and figure in the ledger appears exactly once.
-2. **Text fidelity:** wording, numbering, blanks, options, symbols, units, and labels match the source.
-3. **Figure fidelity:** compare source and final at high zoom; verify all state-sensitive details.
-4. **Answer correctness:** recompute results; verify directions, nodes, units, ranges, and conditions.
-5. **Version synchronization:** question blocks and figures are identical across both PDFs; only answer material differs.
-6. **Compilation:** XeLaTeX completes without errors; inspect overfull/underfull warnings.
-7. **Visual QA:** render every final page to PNG and inspect for clipping, overlap, tiny figures, oversized figures, broken glyphs, awkward page breaks, and answer separation.
-8. **File QA:** confirm final paths, page sizes, page counts, and hashes. Move routine LaTeX intermediates and obsolete outputs to Trash rather than deleting them.
+For a large problem, show classroom-standard working. Each formal step needs a nearby explanation of its purpose, rule, and common failure mode. Add a small red answer diagram when a direction, completed connection, auxiliary line, ray, force, state change, or instrument reading is clearer visually.
 
-State verification honestly. A successful compile alone does not prove source or visual fidelity.
+Use [references/solution-writing.md](references/solution-writing.md) for short-answer depth, large-problem formatting, and side explanations.
+
+### 5. Generate synchronized versions
+
+Maintain one principal `.tex` source with an answer switch so question text and source figures cannot drift between versions. Build the question-only version with answer material disabled and the answer version with it enabled. Use [assets/mistake-collection-template.tex](assets/mistake-collection-template.tex) only as a neutral scaffold; replace every placeholder with the actual task content.
+
+### 6. Verify before delivery
+
+Pass every gate:
+
+- **Inventory:** each registered problem and figure appears once, in order.
+- **Transcription:** compare wording, punctuation, blanks, options, symbols, units, and labels against the original.
+- **Figure:** compare the original and final figure at high zoom, explicitly checking state-sensitive details.
+- **Solution:** recompute answers and confirm the reasoning uses the requested school-level method.
+- **Color:** all question material is black; all answer-side material is red.
+- **Synchronization:** question blocks and source figures match between both PDFs.
+- **Build:** XeLaTeX finishes without errors; investigate meaningful layout warnings.
+- **Visual:** render every page and inspect for clipping, overlap, broken glyphs, poor page breaks, unreadable figures, or oversized figures.
+- **Files:** report exact output paths and distinguish verified facts from anything still uncertain.
+
+A successful compile is only a build check. It does not prove that the questions, figures, or solutions match the source.

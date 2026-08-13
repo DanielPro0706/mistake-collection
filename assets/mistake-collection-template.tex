@@ -1,33 +1,53 @@
 \documentclass[UTF8,fontset=fandol,zihao=5]{ctexart}
-\usepackage[a4paper,top=1.55cm,bottom=1.65cm,left=1.25cm,right=1.55cm]{geometry}
-\usepackage{amsmath,amssymb,mathtools,xcolor,enumitem,setspace,graphicx,changepage,tikz}
-\usetikzlibrary{arrows.meta,calc}
+\usepackage[a4paper,top=1.6cm,bottom=1.7cm,left=1.45cm,right=1.45cm]{geometry}
+\usepackage{amsmath,amssymb,graphicx,xcolor,enumitem,tabularx,adjustbox,tikz,comment}
+\usetikzlibrary{arrows.meta,calc,positioning}
+
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.28em}
-\setstretch{1.08}
-\definecolor{mcred}{RGB}{215,0,0}
-\newcommand{\mctitle}[1]{{\zihao{2}\bfseries #1\par\vspace{0.35em}}}
-\newcommand{\mclabel}[1]{\textbf{#1}}
-\newenvironment{mcbody}{\begin{adjustwidth}{1em}{0pt}}{\end{adjustwidth}}
-\providecommand{\showanswers}{1}
-\ifnum\showanswers=1
-  \newenvironment{mcanswer}{\par\begingroup\color{mcred}}{\par\endgroup}
+\setlength{\parskip}{0.32em}
+\setlist[enumerate]{leftmargin=2em,itemsep=0.4em,topsep=0.3em}
+
+\definecolor{solutionred}{RGB}{205,0,0}
+\providecommand{\withsolutions}{1}
+
+\newcommand{\chapterheading}[2]{%
+  {\centering\zihao{2}\bfseries 第#1章\quad #2\par}%
+  \vspace{0.8em}}
+\newenvironment{problem}[1]{%
+  \par\medskip\noindent\textbf{#1}\par\smallskip
+}{\par\medskip}
+
+\ifnum\withsolutions=1
+  \newenvironment{solution}{%
+    \par\smallskip\begingroup\color{solutionred}
+  }{\par\endgroup}
 \else
-  \usepackage{comment}
-  \excludecomment{mcanswer}
+  \excludecomment{solution}
 \fi
+
+\newcommand{\formalstep}[1]{#1}
+\newcommand{\why}[1]{\footnotesize\textbf{步骤说明：}#1}
+
 \begin{document}
-\mctitle{第X章\hspace{0.5em}章节名称}
-\begin{mcbody}
-\mclabel{1. 题目名称}
 
-黑色题目正文与原题图。
+\chapterheading{X}{章节名称}
 
-\begin{mcanswer}
-\mclabel{答案：}在此写答案。
+\begin{problem}{1. 题目名称}
+在这里逐字录入黑色题目正文，并放置经过核对的原题图。
 
-\mclabel{解析：}在此写逐步解析、依据、易错点，并在必要时添加红色解释图。
-\end{mcanswer}
-\end{mcbody}
+\begin{solution}
+\textbf{答案：}在这里写红色答案。
+
+\textbf{详细解析：}
+
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X@{\hspace{1em}}>{\raggedright\arraybackslash}p{0.34\linewidth}@{}}
+\formalstep{① 写出规范解题步骤。} & \why{说明这一步所用的依据、数据来源及易错点。}\\
+\formalstep{② 继续推导并保留单位。} & \why{说明符号、方向、量程或连接判断。}
+\end{tabularx}
+
+\textbf{答：}用完整语句回答题目。
+\end{solution}
+\end{problem}
+
 \end{document}
