@@ -1,6 +1,6 @@
 ---
 name: mistake-collection
-description: Build a self-contained Chinese mistake collection from photographed or scanned school problems. Manually inspect the original images instead of relying on OCR, faithfully redraw feasible figures with ImageGen, create synchronized question-only and black-question/red-solution PDFs, and format large solutions with aligned step commentary. Use for 错题整理、错题本制作、试题照片重排、题图重绘、双版本练习册、详细答案解析、初中规范解题步骤、or adding later problems to an existing collection.
+description: Build a self-contained Chinese mistake collection from photographed or scanned school problems. Manually inspect the originals instead of relying on OCR, independently solve and web-cross-check answers without blindly trusting online solutions, faithfully redraw feasible figures with ImageGen, create synchronized question-only and black-question/red-solution PDFs, and format large solutions with aligned step commentary. Use for 错题整理、错题本制作、试题照片重排、题图重绘、双版本练习册、详细答案解析、初中规范解题步骤、or adding later problems to an existing collection.
 ---
 
 # Mistake Collection
@@ -26,11 +26,13 @@ Do not add a cover, author, date, abstract, page decoration, concluding summary 
 2. Preserve wording, blanks, choices, mathematical symbols, units, labels, line order, and the requested chapter title. Unless the user explicitly asks to retain printed main numbers, renumber the completed collection continuously as `1, 2, ..., N`; retain original subpart numbering such as `（1）（2）（3）`.
 3. Preserve problem-bearing visual state: connections, switch position, contact, needle direction and endpoint, scale marks, polarity, arrows, leaf angles, rays, and relative placement.
 4. Never treat visible handwriting as authoritative. Solve each item independently and check the result.
-5. Never omit a problem merely because it shares a photograph with another problem.
-6. If a region remains ambiguous after inspecting the original at full resolution, identify the exact ambiguity and ask the user before final delivery.
-7. Move obsolete files to Trash; do not permanently delete user material.
-8. Treat printed knowledge summaries surrounding a problem as ancillary material unless the user explicitly says they are part of the question. Do not copy them into the question-only version.
-9. Preserve the principal `.tex` source, all figure assets needed to rebuild it, and both final PDFs as deliverables. Cleanup may move compiler intermediates such as `.aux`, `.log`, `.xdv`, `.fls`, and `.fdb_latexmk` to Trash, but must never remove or trash the editable `.tex` project.
+5. Before finalizing answers, search the web for the exact or closest verifiable problem and compare multiple useful sources when available. Treat online answers as secondary evidence, not authority: never copy them uncritically or let them override the original wording, diagram state, independent derivation, dimensional checks, or school-level method.
+6. When independent work and an online answer disagree, re-read the original, identify differing assumptions or transcription, recompute step by step, and seek a more authoritative source such as an official answer, teacher edition, textbook explanation, or reputable educational source. Report any unresolved conflict instead of silently choosing the online result.
+7. Never omit a problem merely because it shares a photograph with another problem.
+8. If a region remains ambiguous after inspecting the original at full resolution, identify the exact ambiguity and ask the user before final delivery.
+9. Move obsolete files to Trash; do not permanently delete user material.
+10. Treat printed knowledge summaries surrounding a problem as ancillary material unless the user explicitly says they are part of the question. Do not copy them into the question-only version.
+11. Preserve the principal `.tex` source, all figure assets needed to rebuild it, and both final PDFs as deliverables. Cleanup may move compiler intermediates such as `.aux`, `.log`, `.xdv`, `.fls`, and `.fdb_latexmk` to Trash, but must never remove or trash the editable `.tex` project.
 
 ## Process
 
@@ -75,9 +77,12 @@ For every item:
 
 1. determine the tested concept;
 2. solve without using handwritten answers from the photo;
-3. verify numerical work, units, direction, sign, range, circuit node, and diagram state;
-4. write the final answer in red;
-5. write enough red explanation that a student can reproduce the method rather than memorize the result.
+3. search the exact problem wording, distinctive numbers, or diagram description online and use the results only as a cross-check;
+4. compare the independent result with available online solutions, checking whether their question text, assumptions, units, and diagram state actually match the source photo;
+5. verify numerical work, units, direction, sign, range, circuit node, and diagram state yourself;
+6. resolve or explicitly report any conflict rather than adopting the online answer by default;
+7. write the final answer in red;
+8. write enough red explanation that a student can reproduce the method rather than memorize the result.
 
 The tested concept is internal reasoning and answer-side teaching material. If it is written into the document, place it inside the red answer layer, never before the black question in shared content.
 
@@ -99,6 +104,7 @@ Pass every gate:
 - **Transcription:** compare wording, punctuation, blanks, options, symbols, units, and labels against the original.
 - **Figure:** compare every original crop and final figure at high zoom, panel by panel. Explicitly check water level, immersion fraction, top-edge alignment, contact or separation, slack versus taut string, arrow direction, connectivity, labels, readings, and all other state-sensitive details. A figure that merely looks plausible does not pass.
 - **Solution:** recompute answers and confirm the reasoning uses the requested school-level method.
+- **Online cross-check:** confirm that each answer was searched and compared with any relevant online solution found; verify source-question equivalence and independently resolve discrepancies. Record unresolved conflicts rather than presenting a web answer as certain.
 - **Color:** all question material is black; all answer-side material is red.
 - **Question-only purity:** inspect every page and confirm it contains no knowledge point, tested-concept label, formula reminder, method hint, difficulty tag, answer, analysis, common-error warning, or answer-side figure.
 - **Synchronization:** question blocks and source figures match between both PDFs.
