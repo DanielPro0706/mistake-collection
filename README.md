@@ -41,6 +41,8 @@ git clone https://github.com/DanielPro0706/mistake-collection.git \
 
 重新启动 Codex 或开启新任务，使 Skill 列表刷新。
 
+使用 Skill 时，它会至多每 24 小时自动检查一次仓库中的 `VERSION`。发现新版本后只会提示本地与远端版本，不会静默覆盖本地文件；是否更新仍由用户明确确认。断网或 GitHub 暂时不可用不会阻塞错题整理。
+
 ### 方法二：让 Codex 安装
 
 把仓库链接发给 Codex，并要求：
@@ -51,21 +53,24 @@ git clone https://github.com/DanielPro0706/mistake-collection.git \
 
 ## 使用方法
 
-上传题目照片并明确章节标题、输出文件夹及额外要求，例如：
+在当前工作区上传题目照片，只需发送：
 
 ```text
 使用 $mistake-collection 整理这些题目。
-标题为“第十三章 简单电路”，建立“错题整理”文件夹。
-给我纯题目版和答案解析版；黑色题目、红色答案，解析要详细。
-请人工识别原图，不要只依赖 OCR；题图尽量用 ImageGen 重绘，数值标签用 LaTeX 叠加。
-标题左对齐，图片不要过大，大题在右侧逐步解释但不要重复写“原因”。
 ```
 
-后续可以继续补充：
+Skill 默认会把结果保存到当前工作区的 `错题整理` 文件夹，并根据全部题目自动归纳合适的章节标题。双版本 PDF、黑色题目、红色答案、详细解析、题图处理和逐页核验等要求已经写入 Skill，无需重复说明。
+
+只有想覆盖自动标题时才需要明确指定，例如：
 
 ```text
-把这几道大题追加进去。按初中生标准格式写步骤，
-并在每一步旁边解释为什么这样做。
+使用 $mistake-collection 整理这些题目，标题用“第十三章 简单电路”。
+```
+
+后续追加题目也只需发送：
+
+```text
+把新上传的题目追加到现有错题整理。
 ```
 
 ## 工作流程
@@ -85,10 +90,13 @@ git clone https://github.com/DanielPro0706/mistake-collection.git \
 ```text
 mistake-collection/
 ├── SKILL.md
+├── VERSION
 ├── agents/
 │   └── openai.yaml
 ├── assets/
 │   └── mistake-collection-template.tex
+├── scripts/
+│   └── check_for_updates.py
 ├── references/
 │   ├── solution-writing.md
 │   └── source-reconstruction.md

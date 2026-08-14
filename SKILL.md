@@ -7,9 +7,17 @@ description: Build a self-contained Chinese mistake collection from photographed
 
 Build the collection directly from the user's current source files and instructions. This skill is self-contained: do not load, quote, adapt, or depend on another problem-summary or note-making skill.
 
+## Update check
+
+At the start of each use, resolve this skill's own directory and run `python3 scripts/check_for_updates.py --max-age-hours 24`. The checker may use its cached result instead of contacting GitHub again.
+
+- If it prints `UPDATE_AVAILABLE`, tell the user the installed and remote versions and offer to update from the reported repository. Do not install, overwrite, or remove anything until the user explicitly approves the update.
+- If it prints `UP_TO_DATE`, `LOCAL_AHEAD`, or `SKIPPED`, continue without mentioning the check unless the user asked about versions.
+- If it prints `CHECK_FAILED`, continue the mistake-collection task without treating network access as a requirement. Mention the failure only when the user asked to diagnose updates.
+
 ## Deliverables
 
-Unless the user says otherwise, create a folder named `错题整理` and deliver:
+Unless the user says otherwise, create a folder named `错题整理` directly inside the current workspace and deliver:
 
 - one editable LaTeX project;
 - one `纯题目版.pdf` containing only the chapter heading, black original question blocks, and their necessary source figures;
@@ -20,10 +28,12 @@ The question-only PDF must not contain a knowledge-point heading, tested-concept
 
 Do not add a cover, author, date, abstract, page decoration, concluding summary sentence, or unrelated teaching notes.
 
+Infer a concise, accurate chapter title from the complete registered problem set. Use an umbrella title when the set spans closely related topics. Do not ask the user to supply a title by default. Only replace the inferred title when the user explicitly gives a title. Likewise, do not ask the user to restate the output folder, black/red convention, two-edition requirement, figure method, or solution-detail requirements already defined by this skill.
+
 ## Non-negotiable accuracy rules
 
 1. Use the supplied photos as the source of truth. Inspect the original images manually at full resolution. OCR may assist search or produce a rough draft, but never use it as the sole reading method. Do not complete cropped or unreadable wording from memory.
-2. Preserve wording, blanks, choices, mathematical symbols, units, labels, line order, and the requested chapter title. Unless the user explicitly asks to retain printed main numbers, renumber the completed collection continuously as `1, 2, ..., N`; retain original subpart numbering such as `（1）（2）（3）`.
+2. Preserve wording, blanks, choices, mathematical symbols, units, labels, line order, and the inferred or explicitly specified chapter title. Unless the user explicitly asks to retain printed main numbers, renumber the completed collection continuously as `1, 2, ..., N`; retain original subpart numbering such as `（1）（2）（3）`.
 3. Preserve problem-bearing visual state: connections, switch position, contact, needle direction and endpoint, scale marks, polarity, arrows, leaf angles, rays, and relative placement.
 4. Never treat visible handwriting as authoritative. Solve each item independently and check the result.
 5. Before finalizing answers, search the web for the exact or closest verifiable problem and compare multiple useful sources when available. Treat online answers as secondary evidence, not authority: never copy them uncritically or let them override the original wording, diagram state, independent derivation, dimensional checks, or school-level method.
@@ -38,7 +48,7 @@ Do not add a cover, author, date, abstract, page decoration, concluding summary 
 
 ### 1. Establish scope
 
-List all source files in the user's order. When the user specifies filename order, sort naturally by filename (for example, `IMG_3405` before `IMG_3406`) rather than by upload order, printed problem number, or inferred topic. Inspect each manually at full resolution, including HEIC originals rather than relying only on thumbnails or OCR. Make an internal register with one entry per visible target problem:
+Resolve the destination first. Default to `<current workspace>/错题整理`; use another destination only when the user explicitly requests it. List all source files in the user's order. When the user specifies filename order, sort naturally by filename (for example, `IMG_3405` before `IMG_3406`) rather than by upload order, printed problem number, or inferred topic. Inspect each manually at full resolution, including HEIC originals rather than relying only on thumbnails or OCR. Make an internal register with one entry per visible target problem:
 
 - source filename and visible problem number;
 - exact text, choices, blanks, formulae, and units;
@@ -50,6 +60,8 @@ List all source files in the user's order. When the user specifies filename orde
 Record the source filename beside each internal problem block while editing so later reordering cannot detach a question from its figure. When one problem spans consecutive photos, register all contributing filenames once; when one photo contains multiple problems, retain their top-to-bottom order within that filename.
 
 Count problems by visible problem blocks, then count them again by the register. Resolve any mismatch before typesetting.
+
+After the register is complete, summarize the shared subject and chapter scope into a concise title. Prefer the narrowest title that accurately covers every registered item. If the user explicitly supplied a title, use it exactly instead of the inferred title.
 
 If the target folder already contains a question-only PDF and an answer PDF, render and inspect them before designing the new chapter. Reuse their established typography, margins, black/red convention, step-commentary structure, title placement, and general figure scale unless the user requests a change. Use those PDFs only as layout references, never as a source for the new questions.
 
