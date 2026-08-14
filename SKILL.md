@@ -28,6 +28,14 @@ The question-only PDF must not contain a knowledge-point heading, tested-concept
 
 Do not add a cover, author, date, abstract, page decoration, concluding summary sentence, or unrelated teaching notes.
 
+## Mandatory web cross-check gate
+
+Do not finalize or claim completion of an answer collection until every problem has received an actual web search attempt. Search exact wording first, then distinctive numerical data, option text, and diagram descriptions when necessary. Record internally whether an exact match, a close variant, conflicting solutions, or no useful result was found.
+
+Online solutions are comparison evidence only, never ground truth. Independently derive every answer from the user's original wording and figure, then check the web result for question equivalence, assumptions, units, diagram state, and school-level method. Do not copy an online answer merely because it is labelled “standard answer,” and do not let a majority of websites overrule a verified derivation. Conversely, do not skip or conceal the search merely because the independent answer appears obvious or correct. If no matching answer is found, say so honestly and retain the independently verified result; if a conflict remains unresolved, report it before delivery.
+
+For experimental questions, distinguish correctness from scoring wording. First verify independently that the experimental design, controlled variables, phenomenon, conclusion, and method name are correct. After confirming that an online or supplied standard answer belongs to the exact same question and is not substantively wrong, use its answer phrasing and scoring keywords as the wording authority instead of freely paraphrasing them. Preserve expected terms such as method names, controlled variables, observed phenomena, causal conditions, and conclusion scope. If the exact standard answer cannot be found, use concise textbook-standard wording; if a purported standard answer conflicts with the original figure or verified physics, report the conflict rather than reproducing an error.
+
 Infer a concise, accurate chapter title from the complete registered problem set. Use an umbrella title when the set spans closely related topics. Do not ask the user to supply a title by default. Only replace the inferred title when the user explicitly gives a title. Likewise, do not ask the user to restate the output folder, black/red convention, two-edition requirement, figure method, or solution-detail requirements already defined by this skill.
 
 ## Non-negotiable accuracy rules
@@ -95,8 +103,9 @@ For every item:
 4. compare the independent result with available online solutions, checking whether their question text, assumptions, units, and diagram state actually match the source photo;
 5. verify numerical work, units, direction, sign, range, circuit node, and diagram state yourself;
 6. resolve or explicitly report any conflict rather than adopting the online answer by default;
-7. write the final answer in red;
-8. write enough red explanation that a student can reproduce the method rather than memorize the result.
+7. for experimental questions, retain the confirmed exact standard answer's phrasing and scoring keywords rather than replacing them with a personal paraphrase;
+8. write the final answer in red;
+9. write enough red explanation that a student can reproduce the method rather than memorize the result.
 
 The tested concept is internal reasoning and answer-side teaching material. If it is written into the document, place it inside the red answer layer, never before the black question in shared content.
 
@@ -119,6 +128,7 @@ Pass every gate:
 - **Figure:** compare every original crop and final figure at high zoom, panel by panel. Explicitly check water level, immersion fraction, top-edge alignment, contact or separation, slack versus taut string, arrow direction, connectivity, labels, readings, and all other state-sensitive details. A figure that merely looks plausible does not pass.
 - **Solution:** recompute answers and confirm the reasoning uses the requested school-level method.
 - **Online cross-check:** confirm that each answer was searched and compared with any relevant online solution found; verify source-question equivalence and independently resolve discrepancies. Record unresolved conflicts rather than presenting a web answer as certain.
+- **Experimental wording:** for every experimental item with a confirmed exact standard answer, compare the final fill-ins and conclusions word for word against its scoring terms; do not lose method names, controlled variables, observed phenomena, conditions, or the scope of the conclusion through paraphrase.
 - **Color:** all question material is black; all answer-side material is red.
 - **Question-only purity:** inspect every page and confirm it contains no knowledge point, tested-concept label, formula reminder, method hint, difficulty tag, answer, analysis, common-error warning, or answer-side figure.
 - **Writing usability:** confirm each large problem has a modest, usable writing area in the question-only PDF without excessive blank pages, and each fill-in underline is based on its expected complete answer with roughly `25\%` extra handwriting allowance rather than an arbitrary fixed length.
