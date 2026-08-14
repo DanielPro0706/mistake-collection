@@ -29,7 +29,14 @@
 
 \newcommand{\formalstep}[1]{#1}
 \newcommand{\why}[1]{\footnotesize\color{commentred}#1}
-\newcommand{\answerblankfor}[1]{\underline{\phantom{#1}}}
+\newsavebox{\answermeasurebox}
+\newlength{\answerblankwidth}
+\newcommand{\answerblankfor}[1]{%
+  \begingroup
+  \sbox{\answermeasurebox}{#1}%
+  \setlength{\answerblankwidth}{\dimexpr 5\wd\answermeasurebox/4\relax}%
+  \underline{\hspace{\answerblankwidth}}%
+  \endgroup}
 \ifnum\withsolutions=1
   \newcommand{\questionspace}[1]{}
 \else
@@ -42,7 +49,7 @@
 
 \begin{problem}{1. 题目名称}
 在这里逐字录入黑色题目正文，并放置经过核对的原题图。示例填空：
-物重为\answerblankfor{$3\,\mathrm{N}$}（将宏参数替换为本题完整答案，使横线与答案等宽）。
+物重为\answerblankfor{$3\,\mathrm{N}$}（将宏参数替换为本题完整答案，默认增加约 $25\%$ 手写余量）。
 
 大题在纯题目版预留适量书写空间，例如：\verb|\questionspace{3\baselineskip}|。
 \questionspace{3\baselineskip}

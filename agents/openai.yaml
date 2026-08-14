@@ -1,4 +1,4 @@
 interface:
   display_name: "Mistake Collection"
   short_description: "Manually rebuild and fully verify mistake PDFs."
-  default_prompt: "Use $mistake-collection to inspect photos manually, solve and web-cross-check independently, try ImageGen first, size blanks to their answers, leave modest writing space for large questions, and verify both PDFs."
+  default_prompt: "Use $mistake-collection to inspect photos manually, solve and web-cross-check independently, try ImageGen first, size blanks from answers with handwriting allowance, leave modest writing space for large questions, and verify both PDFs."
