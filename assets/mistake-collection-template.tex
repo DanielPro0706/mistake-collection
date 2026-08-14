@@ -9,10 +9,11 @@
 \setlist[enumerate]{leftmargin=2em,itemsep=0.4em,topsep=0.3em}
 
 \definecolor{solutionred}{RGB}{205,0,0}
+\definecolor{commentred}{RGB}{145,55,55}
 \providecommand{\withsolutions}{1}
 
 \newcommand{\chapterheading}[2]{%
-  {\centering\zihao{2}\bfseries 第#1章\quad #2\par}%
+  \par\noindent{\zihao{2}\bfseries 第#1章\quad #2}\par
   \vspace{0.8em}}
 \newenvironment{problem}[1]{%
   \par\medskip\noindent\textbf{#1}\par\smallskip
@@ -27,14 +28,31 @@
 \fi
 
 \newcommand{\formalstep}[1]{#1}
-\newcommand{\why}[1]{\footnotesize\textbf{步骤说明：}#1}
+\newcommand{\why}[1]{\footnotesize\color{commentred}#1}
+\newsavebox{\answermeasurebox}
+\newlength{\answerblankwidth}
+\newcommand{\answerblankfor}[1]{%
+  \begingroup
+  \sbox{\answermeasurebox}{#1}%
+  \setlength{\answerblankwidth}{\dimexpr 5\wd\answermeasurebox/4\relax}%
+  \underline{\hspace{\answerblankwidth}}%
+  \endgroup}
+\ifnum\withsolutions=1
+  \newcommand{\questionspace}[1]{}
+\else
+  \newcommand{\questionspace}[1]{\par\vspace{#1}}
+\fi
 
 \begin{document}
 
 \chapterheading{X}{章节名称}
 
 \begin{problem}{1. 题目名称}
-在这里逐字录入黑色题目正文，并放置经过核对的原题图。
+在这里逐字录入黑色题目正文，并放置经过核对的原题图。示例填空：
+物重为\answerblankfor{$3\,\mathrm{N}$}（将宏参数替换为本题完整答案，默认增加约 $25\%$ 手写余量）。
+
+大题在纯题目版预留适量书写空间，例如：\verb|\questionspace{3\baselineskip}|。
+\questionspace{3\baselineskip}
 
 \begin{solution}
 \textbf{知识点：}如有必要，在答案层中说明本题考查内容；不得放在题目前或纯题目版中。

@@ -19,16 +19,23 @@ Mark where the actual question begins and ends. Exclude surrounding chapter expl
 - Convert unsupported formats only into temporary lossless previews.
 - Correct orientation before reading.
 - Inspect the full frame first so edge text or a second problem is not missed.
-- Then inspect text and figures at full resolution.
+- Then inspect text and figures manually at full resolution.
+- Treat OCR only as a secondary aid for rough drafts or search. Compare every retained character, formula, unit, and label against the visible original; never accept OCR output without manual inspection.
 - For restoration, crop around the complete printed figure with a small safety margin.
 
 Exposure and perspective correction may improve readability, but must not erase faint scale marks, thin circuit branches, arrows, underlines, or labels.
 
 ## Selecting a reconstruction method
 
+### Redraw or edit with ImageGen
+
+Use ImageGen as the first reconstruction method for every feasible visible figure. Crop the printed figure tightly from the original photo, inspect that crop, and pass it as the reference rather than prompting from the transcribed question alone. For apparatus, physical scenes, biological subjects, irregular shapes, and multi-state illustrations, do not skip directly to a deterministic redraw merely because it is faster.
+
+Keep generated text to a minimum. Ask ImageGen to omit readings, formulas, units, panel captions, and prose when those can be overlaid exactly in LaTeX. State all invariant positions, connections, immersion states, directions, relative heights, and ratios in the prompt. Inspect the first result manually against the crop. If an invariant is wrong, make one targeted ImageGen retry that names only the failed state while locking the correct parts. Do not accept a merely attractive drawing.
+
 ### Redraw with LaTeX/TikZ
 
-Redraw only when the figure can be specified without interpretation. Typical candidates are a simple circuit, geometric construction, labelled arrow, axis, or small data table.
+Fall back to LaTeX/TikZ only when the initial ImageGen attempt and targeted retry cannot preserve an answer-bearing invariant and the figure can be specified without interpretation. Typical reasons include an exact immersion ratio, waterline alignment, scale reading, circuit topology, contact state, or arrow endpoint. Record the failed invariant in working notes before switching methods.
 
 After rendering, compare:
 
@@ -68,4 +75,8 @@ Compare source and reconstruction systematically:
 5. all scale ticks and the indicated reading;
 6. figure caption and subfigure labels.
 
+For multi-state buoyancy figures, additionally check each panel for water level, how much of the object is above or below the surface, whether its top edge is exactly level with the surface, whether it touches the bottom, and whether a string is absent, slack and curved, or taut and straight. These states must agree with both the printed figure and the question wording.
+
 Finally inspect the figure inside the PDF. A faithful asset still fails if it is cropped, blurred by scaling, separated from its problem, or made disproportionately large.
+
+Start with compact rendered sizes: roughly one-quarter to two-fifths of the text width for one apparatus, one-half for paired figures, and no more than about four-fifths for a genuinely wide sequence. These are starting points, not quotas; shrink further when a figure dominates the page.

@@ -38,7 +38,7 @@ Never skip a transformation that a middle-school student is expected to show. Do
 
 ## Side explanations
 
-For long solutions, place formal student working on the left and smaller red commentary on the right. Align each commentary block with the step it explains. The commentary should answer one of:
+For calculation, experiment, proof, geometry, circuit-design, and other long solutions, place formal student working on the left and smaller commentary on the right. Align each commentary block with the step it explains. Do not begin commentary blocks with repeated labels such as `原因：`, `说明：`, or `步骤说明：`; let the aligned placement carry that meaning. Use a muted secondary red for commentary, distinct from the main bright-red solution color, so the two roles are visually clear without adding a label. The commentary should answer one of:
 
 - Why is this relation or construction allowed?
 - Where did this value come from?
@@ -64,10 +64,14 @@ The red explanatory diagram supplements the black question figure. It must not r
 ## Page composition
 
 - Use A4 portrait unless requested otherwise.
+- Keep the chapter title left-aligned by default, matching any existing collection in the target folder.
 - Keep margins comfortable and typography consistent.
 - Keep each problem near its source figure.
+- Keep source figures compact and subordinate to the text; reduce any image that dominates the page or forces an otherwise avoidable page break.
 - Permit long answers to continue across a page rather than compressing them.
 - Avoid decorative boxes, watermarks, automatic summaries, or a separate conclusion section.
 - Use black only for question-side material and red only for answer-side material.
 - In the question-only build, retain only the chapter heading, actual problem statements, choices or blanks, and figures required by those statements.
+- In the question-only build, leave a modest writing area after calculation, proof, experiment, geometry, circuit-design, and other large problems. Estimate it from the expected student work: usually a few baseline heights for a short calculation and more only when several written steps or a drawing are genuinely required. Do not create large empty regions or unnecessary extra pages. Suppress this reserved area in the answer build so the red solution follows the question normally.
+- Base each fill-in underline on the expected complete answer, including number, symbol, and unit, then add about `25\%` width for handwriting by default. Measure the hidden typeset answer instead of choosing one generic fixed width; enlarge further only when the symbols genuinely need it. Do not make a one-character answer sit on a long rule or crowd a multi-part answer onto a short rule.
 - Do not put a knowledge-point banner or solution-oriented introduction before a black problem block.

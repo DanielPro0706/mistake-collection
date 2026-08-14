@@ -1,4 +1,4 @@
 interface:
   display_name: "Mistake Collection"
-  short_description: "Create a strict questions-only PDF plus a detailed solution PDF."
-  default_prompt: "Use $mistake-collection to create a strict question-only PDF with no knowledge points or hints, plus a synchronized detailed red-solution PDF from these source images."
+  short_description: "Manually rebuild and fully verify mistake PDFs."
+  default_prompt: "Use $mistake-collection to organize the uploaded problem photos in the current workspace. Infer the chapter title unless I explicitly provide one, and apply all built-in reconstruction, solution, formatting, and verification rules."
