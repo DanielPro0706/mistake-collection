@@ -29,13 +29,23 @@
 
 \newcommand{\formalstep}[1]{#1}
 \newcommand{\why}[1]{\footnotesize\color{commentred}#1}
+\newcommand{\answerblankfor}[1]{\underline{\phantom{#1}}}
+\ifnum\withsolutions=1
+  \newcommand{\questionspace}[1]{}
+\else
+  \newcommand{\questionspace}[1]{\par\vspace{#1}}
+\fi
 
 \begin{document}
 
 \chapterheading{X}{章节名称}
 
 \begin{problem}{1. 题目名称}
-在这里逐字录入黑色题目正文，并放置经过核对的原题图。
+在这里逐字录入黑色题目正文，并放置经过核对的原题图。示例填空：
+物重为\answerblankfor{$3\,\mathrm{N}$}（将宏参数替换为本题完整答案，使横线与答案等宽）。
+
+大题在纯题目版预留适量书写空间，例如：\verb|\questionspace{3\baselineskip}|。
+\questionspace{3\baselineskip}
 
 \begin{solution}
 \textbf{知识点：}如有必要，在答案层中说明本题考查内容；不得放在题目前或纯题目版中。

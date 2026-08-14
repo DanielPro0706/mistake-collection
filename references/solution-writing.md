@@ -72,4 +72,6 @@ The red explanatory diagram supplements the black question figure. It must not r
 - Avoid decorative boxes, watermarks, automatic summaries, or a separate conclusion section.
 - Use black only for question-side material and red only for answer-side material.
 - In the question-only build, retain only the chapter heading, actual problem statements, choices or blanks, and figures required by those statements.
+- In the question-only build, leave a modest writing area after calculation, proof, experiment, geometry, circuit-design, and other large problems. Estimate it from the expected student work: usually a few baseline heights for a short calculation and more only when several written steps or a drawing are genuinely required. Do not create large empty regions or unnecessary extra pages. Suppress this reserved area in the answer build so the red solution follows the question normally.
+- Make each fill-in underline as wide as the expected complete answer, including number, symbol, and unit. Measure the hidden typeset answer instead of choosing one generic fixed width; do not make a one-character answer sit on a long rule or crowd a multi-part answer onto a short rule.
 - Do not put a knowledge-point banner or solution-oriented introduction before a black problem block.
