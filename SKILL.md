@@ -30,6 +30,7 @@ Do not add a cover, author, date, abstract, page decoration, concluding summary 
 6. If a region remains ambiguous after inspecting the original at full resolution, identify the exact ambiguity and ask the user before final delivery.
 7. Move obsolete files to Trash; do not permanently delete user material.
 8. Treat printed knowledge summaries surrounding a problem as ancillary material unless the user explicitly says they are part of the question. Do not copy them into the question-only version.
+9. Preserve the principal `.tex` source, all figure assets needed to rebuild it, and both final PDFs as deliverables. Cleanup may move compiler intermediates such as `.aux`, `.log`, `.xdv`, `.fls`, and `.fdb_latexmk` to Trash, but must never remove or trash the editable `.tex` project.
 
 ## Process
 
@@ -104,6 +105,6 @@ Pass every gate:
 - **Build:** XeLaTeX finishes without errors; investigate meaningful layout warnings.
 - **Visual:** render every page and inspect for clipping, overlap, broken glyphs, poor page breaks, unreadable figures, or oversized figures.
 - **Composition:** keep the chapter title left-aligned, keep apparatus figures subordinate to the question text, and confirm side notes align with their corresponding formal steps without repetitive labels.
-- **Files:** report exact output paths and distinguish verified facts from anything still uncertain.
+- **Files:** confirm the principal `.tex` source, required figure assets, question-only PDF, and answer PDF all still exist after cleanup; report their exact output paths and distinguish verified facts from anything still uncertain.
 
 A successful compile is only a build check. It does not prove that the questions, figures, or solutions match the source.
