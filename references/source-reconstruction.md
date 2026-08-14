@@ -25,6 +25,17 @@ Mark where the actual question begins and ends. Exclude surrounding chapter expl
 
 Exposure and perspective correction may improve readability, but must not erase faint scale marks, thin circuit branches, arrows, underlines, or labels.
 
+## Figure semantic inventory
+
+Before generating, cleaning, or redrawing a figure, inventory its semantic content from the full-resolution original. Use one row per visible item, not one row per panel:
+
+| Panel | Exact item | Meaning or role | Visible anchor | Final representation | Verified |
+|---|---|---|---|---|---|
+
+Include every printed material or liquid name, symbol, value, unit, scale reading, arrow, leader line, panel caption, experiment number, grouping line, and state cue. Record repeated labels separately: four printed liquid names require four final entries even when three say `水`. Do not classify an item as decorative merely because it is small or outside the apparatus outline.
+
+For experimental figures, identify what is held constant and what changes in each comparison. A label such as `水` versus `酒精`, a probe-depth difference, or an `实验 1` grouping can be the only evidence for the controlled variable. If removing an item would make the comparison ambiguous, it is answer-bearing and mandatory.
+
 ## Selecting a reconstruction method
 
 ### Redraw or edit with ImageGen
@@ -32,6 +43,8 @@ Exposure and perspective correction may improve readability, but must not erase 
 Use ImageGen as the first reconstruction method for every feasible visible figure. Crop the printed figure tightly from the original photo, inspect that crop, and pass it as the reference rather than prompting from the transcribed question alone. For apparatus, physical scenes, biological subjects, irregular shapes, and multi-state illustrations, do not skip directly to a deterministic redraw merely because it is faster.
 
 Keep generated text to a minimum. Ask ImageGen to omit readings, formulas, units, panel captions, and prose when those can be overlaid exactly in LaTeX. State all invariant positions, connections, immersion states, directions, relative heights, and ratios in the prompt. Inspect the first result manually against the crop. If an invariant is wrong, make one targeted ImageGen retry that names only the failed state while locking the correct parts. Do not accept a merely attractive drawing.
+
+An intentionally text-free bitmap is only an intermediate asset. Before moving on, map every omitted inventory entry to a deterministic LaTeX overlay or caption with an explicit panel anchor. The final question layer, not the raw bitmap, must contain the complete source information.
 
 ### Redraw with LaTeX/TikZ
 
@@ -78,5 +91,11 @@ Compare source and reconstruction systematically:
 For multi-state buoyancy figures, additionally check each panel for water level, how much of the object is above or below the surface, whether its top edge is exactly level with the surface, whether it touches the bottom, and whether a string is absent, slack and curved, or taut and straight. These states must agree with both the printed figure and the question wording.
 
 Finally inspect the figure inside the PDF. A faithful asset still fails if it is cropped, blurred by scaling, separated from its problem, or made disproportionately large.
+
+Compare three artifacts side by side: the original crop, the rebuilt asset, and the rendered question-only PDF. Check every inventory entry in left-to-right and top-to-bottom order, then require the number of source entries to equal the number of final visible entries. Inspect the answer PDF separately because enabled solutions can change pagination.
+
+Keep a composite image, its overlays, subfigure captions, and experiment-group labels in one unbreakable LaTeX block. If a page break separates `水`/`酒精`, a value/unit, or an experiment caption from its apparatus, the figure fails even when all text technically exists elsewhere in the PDF.
+
+End with a solvability test: read only the rendered black question and figure, without the solution or working notes. Confirm that a student can identify every panel, substance, value, controlled variable, and comparison needed to answer uniquely.
 
 Start with compact rendered sizes: roughly one-quarter to two-fifths of the text width for one apparatus, one-half for paired figures, and no more than about four-fifths for a genuinely wide sequence. These are starting points, not quotas; shrink further when a figure dominates the page.

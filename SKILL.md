@@ -51,6 +51,7 @@ Infer a concise, accurate chapter title from the complete registered problem set
 9. Move obsolete files to Trash; do not permanently delete user material.
 10. Treat printed knowledge summaries surrounding a problem as ancillary material unless the user explicitly says they are part of the question. Do not copy them into the question-only version.
 11. Preserve the principal `.tex` source, all figure assets needed to rebuild it, and both final PDFs as deliverables. Cleanup may move compiler intermediates such as `.aux`, `.log`, `.xdv`, `.fls`, and `.fdb_latexmk` to Trash, but must never remove or trash the editable `.tex` project.
+12. Treat every printed figure label as question-bearing until verified otherwise. Material and liquid names, values, units, scale readings, panel captions, experiment-group labels, arrows, and leader lines must survive either inside the asset or as exact deterministic LaTeX overlays.
 
 ## Process
 
@@ -61,6 +62,7 @@ Resolve the destination first. Default to `<current workspace>/错题整理`; us
 - source filename and visible problem number;
 - exact text, choices, blanks, formulae, and units;
 - every required figure;
+- a panel-by-panel figure-label inventory containing every printed word, symbol, value, unit, caption, grouping label, and its visible anchor position;
 - the exact start and end of the question block, separated from surrounding knowledge points, examples, hints, or commentary;
 - visual details that affect the answer;
 - cropped, obscured, or uncertain content.
@@ -85,6 +87,8 @@ Use [references/source-reconstruction.md](references/source-reconstruction.md) f
 
 Attempt an ImageGen redraw first for every figure that can be reconstructed faithfully from the visible source. Crop the printed figure from the original photo, give that crop to ImageGen as the reference image, and request clean black-and-white textbook line art. Do not replace ImageGen with TikZ merely because the diagram looks simple. Keep exact words, numerical readings, units, and panel captions out of the generated bitmap when practical; overlay them deterministically in LaTeX.
 
+Before editing or redrawing, finish the figure-label inventory from the original at full resolution. If generated text is omitted from the bitmap, map every inventory entry to an exact LaTeX overlay or caption before typesetting the next problem. Never accept an unlabeled asset as complete merely because its geometry is correct. For experimental figures, explicitly retain substance names such as `水` or `酒精`, controlled-variable labels, panel identities, and experiment grouping because they can determine what is being compared.
+
 Choose separately for every figure:
 
 - **ImageGen redraw/edit:** always make the first serious attempt for feasible apparatus, physical scenes, biological figures, irregular outlines, and multi-state illustrations. State all invariants in the prompt, inspect the output, and compare it panel by panel with the original. If one invariant is wrong, retry ImageGen once with a targeted correction. Reject visually attractive results that alter problem information.
@@ -92,6 +96,8 @@ Choose separately for every figure:
 - **Source-based restoration:** use for complex or state-sensitive printed figures. Crop the original figure, remove handwriting and paper artifacts, correct exposure and perspective, and preserve the printed geometry.
 
 Keep images no larger than necessary for comfortable reading. Start near `0.25–0.40\textwidth` for one compact apparatus, `0.45–0.60\textwidth` for a paired figure, and `0.65–0.80\textwidth` for a wide multi-state figure. Shrink any figure that dominates the question or creates avoidable page breaks. Adjust from the rendered page, not from the raw pixel dimensions.
+
+Keep each composite figure, all deterministic overlays, panel captions, and grouping labels in one unbreakable LaTeX block such as a `minipage`. Do not allow a page break between an apparatus image and the labels needed to interpret it.
 
 ### 4. Author answers independently
 
@@ -125,7 +131,8 @@ Pass every gate:
 
 - **Inventory and order:** each registered problem and figure appears once. Compare the final sequence against the natural filename order and the source-filename marker beside every problem block; confirm that multi-photo problems and multiple problems in one photo remain correctly grouped.
 - **Transcription:** compare wording, punctuation, blanks, options, symbols, units, and labels against the original.
-- **Figure:** compare every original crop and final figure at high zoom, panel by panel. Explicitly check water level, immersion fraction, top-edge alignment, contact or separation, slack versus taut string, arrow direction, connectivity, labels, readings, and all other state-sensitive details. A figure that merely looks plausible does not pass.
+- **Figure:** compare every original crop, rebuilt asset, and rendered question-only PDF at high zoom, panel by panel. Reconcile the figure-label inventory entry by entry and require the original and final counts to match. Explicitly check material or liquid names, water level, immersion fraction, top-edge alignment, contact or separation, slack versus taut string, arrow direction, connectivity, values, units, captions, group labels, readings, and all other state-sensitive details. A figure that merely looks plausible does not pass.
+- **Figure solvability:** read the final black question and its rendered figure as a student would, without consulting the answer. Confirm that each panel and compared variable is identifiable and that no omitted or page-separated label makes the problem ambiguous or unsolvable.
 - **Solution:** recompute answers and confirm the reasoning uses the requested school-level method.
 - **Online cross-check:** confirm that each answer was searched and compared with any relevant online solution found; verify source-question equivalence and independently resolve discrepancies. Record unresolved conflicts rather than presenting a web answer as certain.
 - **Experimental wording:** for every experimental item with a confirmed exact standard answer, compare the final fill-ins and conclusions word for word against its scoring terms; do not lose method names, controlled variables, observed phenomena, conditions, or the scope of the conclusion through paraphrase.
@@ -134,7 +141,7 @@ Pass every gate:
 - **Writing usability:** confirm each large problem has a modest, usable writing area in the question-only PDF without excessive blank pages, and each fill-in underline is based on its expected complete answer with roughly `25\%` extra handwriting allowance rather than an arbitrary fixed length.
 - **Synchronization:** question blocks and source figures match between both PDFs.
 - **Build:** XeLaTeX finishes without errors; investigate meaningful layout warnings.
-- **Visual:** render every page and inspect for clipping, overlap, broken glyphs, poor page breaks, unreadable figures, or oversized figures.
+- **Visual:** render every page of both editions and inspect for clipping, overlap, broken glyphs, poor page breaks, unreadable figures, oversized figures, or labels detached from their image or experiment group.
 - **Composition:** keep the chapter title left-aligned, keep apparatus figures subordinate to the question text, and confirm side notes align with their corresponding formal steps without repetitive labels.
 - **Files:** confirm the principal `.tex` source, required figure assets, question-only PDF, and answer PDF all still exist after cleanup; report their exact output paths and distinguish verified facts from anything still uncertain.
 
