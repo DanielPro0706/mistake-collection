@@ -11,6 +11,8 @@ Create one row for each visible target problem, not one row for each image.
 
 Record separate rows when one photograph contains several problems. Record the same problem once when it spans several photographs, noting all source files.
 
+After the row is manually verified, set its working status to `TEXT_EXACT`. This is a source lock: answer websites and supplied solutions cannot modify the locked wording, blanks, options, symbols, units, order, or figure. If a later discrepancy appears, reopen the original image and relock the row only after another character-by-character comparison.
+
 Mark where the actual question begins and ends. Exclude surrounding chapter explanations, knowledge-point summaries, worked-example commentary, method hints, difficulty labels, and handwritten notes unless the user explicitly identifies them as part of the question. A formula, table, condition, or instruction inside the problem block remains part of the question and must not be removed.
 
 ## Image preparation
@@ -41,6 +43,10 @@ For experimental figures, identify what is held constant and what changes in eac
 ### Redraw or edit with ImageGen
 
 Use ImageGen as the first reconstruction method for every feasible visible figure. Crop the printed figure tightly from the original photo, inspect that crop, and pass it as the reference rather than prompting from the transcribed question alone. For apparatus, physical scenes, biological subjects, irregular shapes, and multi-state illustrations, do not skip directly to a deterministic redraw merely because it is faster.
+
+Ask for a print-ready image with a longest side of at least `1200 px`, preferably `1800–2400 px` for a wide figure, on a uniform pure-white `#FFFFFF` background. Require crisp anti-aliased black strokes and forbid paper texture, shadows, gray wash, blur, halos, scan noise, and watermarks. After generation, inspect actual dimensions and the visible background. If the page corners or whitespace retain a gray paper cast, perform a targeted ImageGen correction before acceptance.
+
+Do not turn a photographed crop into a final asset by enlarging, thresholding, binarizing, or aggressively sharpening it. These techniques can make thin textbook lines fuzzy or jagged and can erase scale ticks. They may be used only as temporary inspection aids. The final PDF must use the accepted ImageGen asset when the user explicitly requested ImageGen.
 
 Keep generated text to a minimum. Ask ImageGen to omit readings, formulas, units, panel captions, and prose when those can be overlaid exactly in LaTeX. State all invariant positions, connections, immersion states, directions, relative heights, and ratios in the prompt. Inspect the first result manually against the crop. If an invariant is wrong, make one targeted ImageGen retry that names only the failed state while locking the correct parts. Do not accept a merely attractive drawing.
 
@@ -77,6 +83,8 @@ Return a tight, complete crop with modest white margins.
 
 If an edit changes any invariant, discard it and retry from the original crop rather than repairing the altered result repeatedly.
 
+When the user explicitly requires ImageGen, do not switch to TikZ, source restoration, a screenshot, or another generator without reporting the failed invariant and obtaining approval. Fidelity still takes priority: if targeted ImageGen retries cannot preserve an answer-bearing state, pause instead of presenting an approximate figure as complete.
+
 ## Comparison pass
 
 Compare source and reconstruction systematically:
@@ -91,6 +99,8 @@ Compare source and reconstruction systematically:
 For multi-state buoyancy figures, additionally check each panel for water level, how much of the object is above or below the surface, whether its top edge is exactly level with the surface, whether it touches the bottom, and whether a string is absent, slack and curved, or taut and straight. These states must agree with both the printed figure and the question wording.
 
 Finally inspect the figure inside the PDF. A faithful asset still fails if it is cropped, blurred by scaling, separated from its problem, or made disproportionately large.
+
+Record `FIGURE_EXACT`, `PURE_WHITE`, the actual longest-side pixel count, the reconstruction method, label verification, and separate question-PDF/answer-PDF checks in `audit-manifest.json`. Validate it with `scripts/validate_audit_manifest.py` before delivery.
 
 Compare three artifacts side by side: the original crop, the rebuilt asset, and the rendered question-only PDF. Check every inventory entry in left-to-right and top-to-bottom order, then require the number of source entries to equal the number of final visible entries. Inspect the answer PDF separately because enabled solutions can change pagination.
 

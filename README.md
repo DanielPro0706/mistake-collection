@@ -22,7 +22,9 @@
 
 - 人工逐张检查 HEIC、照片和扫描件，不把 OCR 当作唯一识别依据；
 - 记录原题题号并逐字保留题干、空格、选项、符号、单位和图中标注，成册时统一连续编号；
-- 尽量以原图为参考用 ImageGen 重绘干净的黑白教材题图，文字和数值优先由 LaTeX 精确叠加；
+- 先锁定原照片题干，再以原图裁片为参考用 ImageGen 重绘高清黑白教材题图，文字和数值优先由 LaTeX 精确叠加；
+- ImageGen 图要求打印尺寸下线条清晰、长边至少 1200 px、背景为纯白，不使用二值化截图充当成品；
+- 用审计清单记录 `TEXT_EXACT`、`FIGURE_EXACT`、`ANSWER_CROSSCHECKED`，阻止参考答案反向改写原题；
 - 严格保持电表指针、开关状态、接触点、线路连接、箭头和刻度等关键信息；
 - 独立求解，不把照片中的手写答案当作正确答案；
 - 主标题默认左对齐，整份错题按 `1—N` 连续编号，小问编号保持不变；
@@ -77,7 +79,7 @@ Skill 默认会把结果保存到当前工作区的 `错题整理` 文件夹，�
 
 1. 建立题目清单，确定每道题的准确边界。
 2. 转录题干并逐字核对。
-3. 优先用 ImageGen 参考原图重绘可忠实还原的题图，必要时改用 TikZ 或原图清理。
+3. 优先用 ImageGen 参考原图重绘可忠实还原的题图；用户明确指定 ImageGen 时，不静默改用 TikZ、截图或二值化图片。
 4. 独立求解并检查单位、方向、量程、节点和图示状态。
 5. 生成纯题目版与答案解析版。
 6. 检查纯题版没有任何教学提示或答案内容。
@@ -94,9 +96,11 @@ mistake-collection/
 ├── agents/
 │   └── openai.yaml
 ├── assets/
+│   ├── audit-manifest-template.json
 │   └── mistake-collection-template.tex
 ├── scripts/
-│   └── check_for_updates.py
+│   ├── check_for_updates.py
+│   └── validate_audit_manifest.py
 ├── references/
 │   ├── solution-writing.md
 │   └── source-reconstruction.md

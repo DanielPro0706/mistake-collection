@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "user_requires_imagegen": false,
+  "problems": [
+    {
+      "id": "1",
+      "source_files": ["IMG_0001.HEIC"],
+      "printed_number": "1",
+      "text_status": "TEXT_EXACT",
+      "answer_status": "ANSWER_CROSSCHECKED",
+      "figure_ids": ["fig-1"],
+      "uncertainties": []
+    }
+  ],
+  "figures": [
+    {
+      "id": "fig-1",
+      "problem_id": "1",
+      "source_crop": "figures/01-source-crop.png",
+      "final_asset": "figures/01-imagegen-white.png",
+      "method": "imagegen",
+      "status": "FIGURE_EXACT",
+      "background_status": "PURE_WHITE",
+      "long_side_px": 1800,
+      "labels_verified": true,
+      "question_pdf_verified": true,
+      "answer_pdf_verified": true
+    }
+  ],
+  "pdfs": {
+    "question_only_rendered": true,
+    "answer_rendered": true,
+    "question_text_synced": true,
+    "question_only_pure": true
+  }
+}

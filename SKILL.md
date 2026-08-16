@@ -52,6 +52,9 @@ Infer a concise, accurate chapter title from the complete registered problem set
 10. Treat printed knowledge summaries surrounding a problem as ancillary material unless the user explicitly says they are part of the question. Do not copy them into the question-only version.
 11. Preserve the principal `.tex` source, all figure assets needed to rebuild it, and both final PDFs as deliverables. Cleanup may move compiler intermediates such as `.aux`, `.log`, `.xdv`, `.fls`, and `.fdb_latexmk` to Trash, but must never remove or trash the editable `.tex` project.
 12. Treat every printed figure label as question-bearing until verified otherwise. Material and liquid names, values, units, scale readings, panel captions, experiment-group labels, arrows, and leader lines must survive either inside the asset or as exact deterministic LaTeX overlays.
+13. Lock the question layer before consulting answer references. Web pages, teacher answers, answer keys, and similar problems may correct only the answer/analysis layer; they must never supply, normalize, shorten, reorder, or silently repair the question text or figure. If the photo is unclear, keep the item unresolved and ask the user rather than borrowing wording from the web.
+14. When the user explicitly requires ImageGen, every final question-bearing bitmap must be produced or edited with ImageGen. Do not silently substitute a screenshot, thresholded crop, TikZ redraw, or another generator. If ImageGen cannot preserve an answer-bearing invariant after targeted retries, stop and report the exact failure before changing methods.
+15. Do not use thresholding, binarization, aggressive sharpening, or enlarged screenshots as final figure assets. These operations commonly create jagged or fuzzy strokes. Final ImageGen assets must be print-sharp at their rendered size and placed on a visually uniform pure-white background with no gray paper cast.
 
 ## Process
 
@@ -71,6 +74,10 @@ Record the source filename beside each internal problem block while editing so l
 
 Count problems by visible problem blocks, then count them again by the register. Resolve any mismatch before typesetting.
 
+Create a working `audit-manifest.json` from [assets/audit-manifest-template.json](assets/audit-manifest-template.json). Do not mark a problem `TEXT_EXACT` until its complete retained question block has been compared character by character with the full-resolution source. Do not mark an answer `ANSWER_CROSSCHECKED` until it has been independently solved and the required web search attempt has been recorded. Do not mark a figure `FIGURE_EXACT` until its source crop, final asset, and both rendered PDFs have been compared. The manifest is a verification artifact, not a substitute for manual inspection.
+
+Treat the completed register and `TEXT_EXACT` entries as a source lock. Once locked, online references may affect only answers, scoring terms, and explanations. Any later question-layer change requires reopening the original photo, repeating the comparison, and relocking the affected entry.
+
 After the register is complete, summarize the shared subject and chapter scope into a concise title. Prefer the narrowest title that accurately covers every registered item. If the user explicitly supplied a title, use it exactly instead of the inferred title.
 
 If the target folder already contains a question-only PDF and an answer PDF, render and inspect them before designing the new chapter. Reuse their established typography, margins, black/red convention, step-commentary structure, title placement, and general figure scale unless the user requests a change. Use those PDFs only as layout references, never as a source for the new questions.
@@ -86,6 +93,8 @@ Use [references/source-reconstruction.md](references/source-reconstruction.md) f
 ### 3. Reconstruct each figure
 
 Attempt an ImageGen redraw first for every figure that can be reconstructed faithfully from the visible source. Crop the printed figure from the original photo, give that crop to ImageGen as the reference image, and request clean black-and-white textbook line art. Do not replace ImageGen with TikZ merely because the diagram looks simple. Keep exact words, numerical readings, units, and panel captions out of the generated bitmap when practical; overlay them deterministically in LaTeX.
+
+Request a print-ready raster with a longest side of at least `1200 px` (prefer roughly `1800–2400 px` for wide multi-panel figures), crisp anti-aliased black strokes, and a uniform `#FFFFFF` background. Inspect the actual output dimensions and background rather than trusting the prompt. Reject paper-gray corners, texture, shadows, halos, low-resolution crops, fuzzy enlarged lines, and compression artifacts. A source crop may remain beside the project for audit, but it must not be included in the final PDF when the user required an ImageGen redraw.
 
 Before editing or redrawing, finish the figure-label inventory from the original at full resolution. If generated text is omitted from the bitmap, map every inventory entry to an exact LaTeX overlay or caption before typesetting the next problem. Never accept an unlabeled asset as complete merely because its geometry is correct. For experimental figures, explicitly retain substance names such as `水` or `酒精`, controlled-variable labels, panel identities, and experiment grouping because they can determine what is being compared.
 
@@ -129,9 +138,12 @@ Perform this verification after the final rebuild, not only during drafting. Reo
 
 Pass every gate:
 
+- **Audit manifest:** run `python3 <skill-dir>/scripts/validate_audit_manifest.py audit-manifest.json --check-files` and require `AUDIT_PASS`. A passing manifest proves that required checks were recorded; it does not replace the source/PDF visual comparison.
+
 - **Inventory and order:** each registered problem and figure appears once. Compare the final sequence against the natural filename order and the source-filename marker beside every problem block; confirm that multi-photo problems and multiple problems in one photo remain correctly grouped.
 - **Transcription:** compare wording, punctuation, blanks, options, symbols, units, and labels against the original.
 - **Figure:** compare every original crop, rebuilt asset, and rendered question-only PDF at high zoom, panel by panel. Reconcile the figure-label inventory entry by entry and require the original and final counts to match. Explicitly check material or liquid names, water level, immersion fraction, top-edge alignment, contact or separation, slack versus taut string, arrow direction, connectivity, values, units, captions, group labels, readings, and all other state-sensitive details. A figure that merely looks plausible does not pass.
+- **Image quality:** for each final raster, verify the actual pixel dimensions, clean anti-aliased edges, uniform white background, and legibility at the PDF's rendered size. When ImageGen is user-mandated, confirm the manifest method is `imagegen` or `imagegen_with_latex_overlay`; a thresholded crop or deterministic replacement fails this gate.
 - **Figure solvability:** read the final black question and its rendered figure as a student would, without consulting the answer. Confirm that each panel and compared variable is identifiable and that no omitted or page-separated label makes the problem ambiguous or unsolvable.
 - **Solution:** recompute answers and confirm the reasoning uses the requested school-level method.
 - **Online cross-check:** confirm that each answer was searched and compared with any relevant online solution found; verify source-question equivalence and independently resolve discrepancies. Record unresolved conflicts rather than presenting a web answer as certain.
