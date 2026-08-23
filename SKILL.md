@@ -24,9 +24,11 @@ Unless the user says otherwise, create a folder named `错题整理` directly in
 - one `答案解析版.pdf` containing the identical black questions, followed by red answers, red reasoning, and red explanatory figures when useful;
 - final cleaned figure assets required to rebuild the PDFs.
 
+Both PDFs must show a page number on every page and the footer notice `由 Codex 生成，内容可能存在错误，请自行核对。`. Keep the notice unobtrusive but clearly legible, and keep its wording identical in both editions.
+
 The question-only PDF must not contain a knowledge-point heading, tested-concept label, formula reminder, method hint, difficulty label, solution lead-in, common-error warning, answer, or explanation before or after a problem. Put any useful teaching material inside the red answer layer so it appears only in the answer PDF.
 
-Do not add a cover, author, date, abstract, page decoration, concluding summary sentence, or unrelated teaching notes.
+Do not add a cover, author, date, abstract, page decoration other than the required numbered disclaimer footer, concluding summary sentence, or unrelated teaching notes.
 
 ## Mandatory web cross-check gate
 
@@ -55,6 +57,7 @@ Infer a concise, accurate chapter title from the complete registered problem set
 13. Lock the question layer before consulting answer references. Web pages, teacher answers, answer keys, and similar problems may correct only the answer/analysis layer; they must never supply, normalize, shorten, reorder, or silently repair the question text or figure. If the photo is unclear, keep the item unresolved and ask the user rather than borrowing wording from the web.
 14. When the user explicitly requires ImageGen, every final question-bearing bitmap must be produced or edited with ImageGen. Do not silently substitute a screenshot, thresholded crop, TikZ redraw, or another generator. If ImageGen cannot preserve an answer-bearing invariant after targeted retries, stop and report the exact failure before changing methods.
 15. Do not use thresholding, binarization, aggressive sharpening, or enlarged screenshots as final figure assets. These operations commonly create jagged or fuzzy strokes. Final ImageGen assets must be print-sharp at their rendered size and placed on a visually uniform pure-white background with no gray paper cast.
+16. Put the page number and the exact notice `由 Codex 生成，内容可能存在错误，请自行核对。` in the footer of every page in both editions. The footer must remain outside the question and answer layers so it is always present, must not overlap body content, and must not be removed by the answer switch.
 
 ## Process
 
@@ -152,6 +155,7 @@ Pass every gate:
 - **Question-only purity:** inspect every page and confirm it contains no knowledge point, tested-concept label, formula reminder, method hint, difficulty tag, answer, analysis, common-error warning, or answer-side figure.
 - **Writing usability:** confirm each large problem has a modest, usable writing area in the question-only PDF without excessive blank pages, and each fill-in underline is based on its expected complete answer with roughly `25\%` extra handwriting allowance rather than an arbitrary fixed length.
 - **Synchronization:** question blocks and source figures match between both PDFs.
+- **Footer:** every page in both editions has a correct page number and the exact notice `由 Codex 生成，内容可能存在错误，请自行核对。`; confirm the footer is legible, identical between editions, and does not overlap or clip body content.
 - **Build:** XeLaTeX finishes without errors; investigate meaningful layout warnings.
 - **Visual:** render every page of both editions and inspect for clipping, overlap, broken glyphs, poor page breaks, unreadable figures, oversized figures, or labels detached from their image or experiment group.
 - **Composition:** keep the chapter title left-aligned, keep apparatus figures subordinate to the question text, and confirm side notes align with their corresponding formal steps without repetitive labels.
