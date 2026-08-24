@@ -1,6 +1,6 @@
 \documentclass[UTF8,fontset=fandol,zihao=5]{ctexart}
 \usepackage[a4paper,top=1.6cm,bottom=1.7cm,left=1.45cm,right=1.45cm]{geometry}
-\usepackage{amsmath,amssymb,graphicx,xcolor,enumitem,tabularx,adjustbox,tikz,comment,fancyhdr}
+\usepackage{amsmath,amssymb,graphicx,xcolor,enumitem,adjustbox,tikz,comment,fancyhdr}
 \usetikzlibrary{arrows.meta,calc,positioning}
 
 \pagestyle{fancy}
@@ -32,8 +32,6 @@
   \excludecomment{solution}
 \fi
 
-\newcommand{\formalstep}[1]{#1}
-\newcommand{\why}[1]{\footnotesize\color{commentred}#1}
 \newsavebox{\answermeasurebox}
 \newlength{\answerblankwidth}
 \newcommand{\answerblankfor}[1]{%
@@ -66,10 +64,13 @@
 
 \textbf{详细解析：}
 
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X@{\hspace{1em}}>{\raggedright\arraybackslash}p{0.34\linewidth}@{}}
-\formalstep{（1）按经核对的标准答案写正式步骤。} & \why{独立详细说明这一步所用的依据、数据来源、隐含推导及易错点。}\\
-\formalstep{（2）保持标准答案的顺序并继续推导。} & \why{独立详细说明符号、单位、方向、量程、连接判断及检验方法。}
-\end{tabularx}
+连接必要的辅助线，并用完整文字说明交点或垂足。
+
+$\because$ 写出本步条件，$\therefore$ 写出对应结论。
+
+$\because$ 每个正式步骤单独成行，$\therefore$ 公式尽量使用行内形式。
+
+{\footnotesize\color{commentred}如需教学批注，将它放在对应步骤的下一行并保持左对齐；不要默认使用双栏。}
 
 \textbf{答：}用完整语句回答题目。
 \end{solution}

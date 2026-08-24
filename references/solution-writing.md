@@ -38,9 +38,21 @@ For proof, experiment, geometry, or circuit-design questions, replace the labels
 
 Never skip a transformation that a middle-school student is expected to show. Do not introduce advanced methods when a syllabus-level method is available.
 
-## Side explanations
+## Line-by-line mathematical writing
 
-For calculation, experiment, proof, geometry, circuit-design, and other long solutions, place the standard or independently derived formal student working on the left and independently authored smaller commentary on the right. Align each commentary block with the step it explains. Make the commentary as detailed as useful for understanding: it may unpack transitions omitted by the standard answer, but it must not alter the formal steps or introduce a conflicting method. Do not begin commentary blocks with repeated labels such as `原因：`, `说明：`, or `步骤说明：`; let the aligned placement carry that meaning. Use a muted secondary red for commentary, distinct from the main bright-red solution color, so the two roles are visually clear without adding a label. The commentary should answer one or more of:
+Use a single left-aligned column for long solutions. Put each construction, condition, inference, calculation, or conclusion on its own short line. Do not compress several scoring steps into one paragraph.
+
+- Write constructions in words: `连接 AC、BD，交点记为 O。`
+- Do not write point definitions as intersection equations such as `O=AC\cap BD`.
+- Prefer inline formulas such as `∵ $AB=AC$，∴ $\angle B=\angle C$。`
+- Do not center a short equality merely to create visual spacing. Use display math only for a genuinely long aligned derivation that cannot remain legible inline.
+- Do not use `⇒`, `→`, `\Rightarrow`, or `\Longrightarrow` as proof shorthand. State the reason or use ordinary wording.
+- Basic cause-and-effect may use `∵` and `∴`. In LaTeX, prefer `$\because$` and `$\therefore$` or define safe Unicode mappings so the glyphs render in the math font.
+- Keep every line left aligned. Do not indent formulas to form decorative centered blocks.
+
+## Explanatory commentary
+
+For calculation, experiment, proof, geometry, circuit-design, and other long solutions, put independently authored commentary immediately after the formal line it explains. Keep it left aligned and, when useful, use a smaller muted secondary red. Do not use a two-column layout by default. Commentary may unpack transitions omitted by the standard answer, but it must not alter the formal steps or introduce a conflicting method. The commentary should answer one or more of:
 
 - Why is this relation or construction allowed?
 - Where did this value come from?
@@ -48,7 +60,7 @@ For calculation, experiment, proof, geometry, circuit-design, and other long sol
 - What error would make this step wrong?
 - How can the student check the result?
 
-If two columns reduce readability, place each explanation directly under its step. Do not solve a layout problem by shrinking text excessively.
+Do not solve a layout problem by shrinking text excessively. Allow the answer to continue onto another page.
 
 ## Answer-side figures
 
