@@ -36,8 +36,10 @@ def validate_manifest(data: object, manifest_path: Path, check_files: bool) -> l
     if not isinstance(data, dict):
         return ["manifest root must be a JSON object"]
 
-    if data.get("schema_version") != 1:
-        errors.append("schema_version must be 1")
+    schema_version = data.get("schema_version")
+    if schema_version not in {1, 2}:
+        errors.append("schema_version must be 1 or 2")
+    strict_figure_audit = schema_version == 2
 
     user_requires_imagegen = data.get("user_requires_imagegen", False)
     if not isinstance(user_requires_imagegen, bool):
@@ -134,6 +136,18 @@ def validate_manifest(data: object, manifest_path: Path, check_files: bool) -> l
         for flag in ("labels_verified", "question_pdf_verified", "answer_pdf_verified"):
             if figure.get(flag) is not True:
                 errors.append(f"{prefix}.{flag} must be true")
+        if strict_figure_audit:
+            for list_field in ("segment_inventory", "geometry_constraints"):
+                values = figure.get(list_field)
+                if not isinstance(values, list) or not values or not all(
+                    nonempty_string(item) for item in values
+                ):
+                    errors.append(
+                        f"{prefix}.{list_field} must contain non-empty strings"
+                    )
+            for flag in ("segments_verified", "constraints_verified"):
+                if figure.get(flag) is not True:
+                    errors.append(f"{prefix}.{flag} must be true")
         for path_field in ("source_crop", "final_asset"):
             value = figure.get(path_field)
             if not nonempty_string(value):
@@ -168,7 +182,7 @@ def validate_manifest(data: object, manifest_path: Path, check_files: bool) -> l
 
 def self_test() -> int:
     valid = {
-        "schema_version": 1,
+        "schema_version": 2,
         "user_requires_imagegen": True,
         "problems": [
             {
@@ -191,6 +205,10 @@ def self_test() -> int:
                 "background_status": "PURE_WHITE",
                 "long_side_px": 1800,
                 "labels_verified": True,
+                "segment_inventory": ["AC: A--C", "CE: C--E"],
+                "geometry_constraints": ["A,O,C collinear", "CE parallel BD"],
+                "segments_verified": True,
+                "constraints_verified": True,
                 "question_pdf_verified": True,
                 "answer_pdf_verified": True,
             }
@@ -201,8 +219,20 @@ def self_test() -> int:
     invalid = json.loads(json.dumps(valid))
     invalid["problems"][0]["text_status"] = "TEXT_PENDING"
     invalid["figures"][0]["background_status"] = "OFF_WHITE"
+    invalid["figures"][0]["segment_inventory"] = []
+    invalid["figures"][0]["constraints_verified"] = False
     invalid_errors = validate_manifest(invalid, Path("manifest.json"), check_files=False)
-    if valid_errors or len(invalid_errors) < 2:
+    legacy = json.loads(json.dumps(valid))
+    legacy["schema_version"] = 1
+    for field in (
+        "segment_inventory",
+        "geometry_constraints",
+        "segments_verified",
+        "constraints_verified",
+    ):
+        legacy["figures"][0].pop(field, None)
+    legacy_errors = validate_manifest(legacy, Path("manifest.json"), check_files=False)
+    if valid_errors or legacy_errors or len(invalid_errors) < 4:
         print("SELF_TEST_FAIL")
         return 1
     print("SELF_TEST_PASS")

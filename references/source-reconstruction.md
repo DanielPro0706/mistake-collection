@@ -55,6 +55,25 @@ Examples of distinct checks:
 
 For TikZ, identify the exact path expression that draws each required segment. For a bitmap, inspect the stroke at high zoom. Then inspect the rendered question PDF separately. A correct source asset still fails when clipping, masking, scaling, or an overlay breaks the visible connection.
 
+## Geometry constraint ledger
+
+Before assigning coordinates, record every condition that determines point placement or line direction.
+
+| Panel | Constraint | Source or derivation | Coordinate/vector check | Verified |
+|---|---|---|---|---|
+
+Include, when applicable:
+
+- collinear point order such as `B-C-E`;
+- midpoint identities such as `F` midpoint of `DE`;
+- parallel and perpendicular line pairs;
+- equal-length conditions that determine a point's parameter on a side;
+- angle-bisector intersections;
+- required intersections such as `O` lying on both `AC` and `MN`;
+- whether a line is genuinely horizontal, vertical, slanted, or unconstrained.
+
+For TikZ, solve or calculate the coordinates from these constraints before drawing. Verify dot products, slopes, ratios, or symbolic relations when practical. Do not move a point for visual balance after verification unless the constraints are recomputed and still pass.
+
 ## Selecting a reconstruction method
 
 ### Redraw or edit with ImageGen

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "user_requires_imagegen": false,
   "problems": [
     {
@@ -23,6 +23,16 @@
       "background_status": "PURE_WHITE",
       "long_side_px": 1800,
       "labels_verified": true,
+      "segment_inventory": [
+        "AC: continuous path from A to C",
+        "CE: continuous path from C to E"
+      ],
+      "geometry_constraints": [
+        "A, O, C are collinear",
+        "CE is parallel to BD"
+      ],
+      "segments_verified": true,
+      "constraints_verified": true,
       "question_pdf_verified": true,
       "answer_pdf_verified": true
     }
