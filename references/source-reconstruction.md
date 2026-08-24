@@ -38,6 +38,23 @@ Include every printed material or liquid name, symbol, value, unit, scale readin
 
 For experimental figures, identify what is held constant and what changes in each comparison. A label such as `水` versus `酒精`, a probe-depth difference, or an `实验 1` grouping can be the only evidence for the controlled variable. If removing an item would make the comparison ambiguous, it is answer-bearing and mandatory.
 
+## Named-segment connectivity inventory
+
+Create a separate row for every segment, ray, extension, or connection that is printed in the source or named in the question. Do not infer completion from endpoint labels.
+
+| Panel | Required path | Source or wording | Endpoint/line invariant | Final drawing command or asset stroke | PDF verified |
+|---|---|---|---|---|---|
+
+Examples of distinct checks:
+
+- `AC` must have one continuous stroke from point `A` to point `C`;
+- `CE` must not be omitted merely because both `C` and `E` are labeled;
+- if `E` lies on the extension of `BC`, verify the complete collinear chain `B-C-E` without a gap;
+- if `FG` and `GH` are named, drawing a different line through a nearby point does not satisfy either segment;
+- a point constrained by equal-length data must be placed from that data before connected segments are drawn; do not force a convenient horizontal or vertical alignment.
+
+For TikZ, identify the exact path expression that draws each required segment. For a bitmap, inspect the stroke at high zoom. Then inspect the rendered question PDF separately. A correct source asset still fails when clipping, masking, scaling, or an overlay breaks the visible connection.
+
 ## Selecting a reconstruction method
 
 ### Redraw or edit with ImageGen
@@ -64,6 +81,7 @@ After rendering, compare:
 - open/closed or touching/separated state;
 - arrow and polarity direction;
 - relative proportions needed to read the problem.
+- every entry in the named-segment connectivity inventory, including shared endpoints and collinear extensions.
 
 ### Restore the printed figure
 
