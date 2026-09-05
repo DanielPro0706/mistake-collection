@@ -40,7 +40,7 @@ Never skip a transformation that a middle-school student is expected to show. Do
 
 ## Line-by-line mathematical writing
 
-Use a single left-aligned column for long solutions. Put each construction, condition, inference, calculation, or conclusion on its own short line. Do not compress several scoring steps into one paragraph.
+Use a workbook-style paired layout for long solutions. Put each construction, condition, inference, calculation, or conclusion on its own short line in the left column. Put the explanation of that exact line in the right column at the same vertical position. Do not compress several scoring steps into one paragraph, and do not remove explanations merely to make the page shorter.
 
 - Write constructions in words: `连接 AC、BD，交点记为 O。`
 - Do not write point definitions as intersection equations such as `O=AC\cap BD`.
@@ -48,11 +48,12 @@ Use a single left-aligned column for long solutions. Put each construction, cond
 - Do not center a short equality merely to create visual spacing. Use display math only for a genuinely long aligned derivation that cannot remain legible inline.
 - Do not use `⇒`, `→`, `\Rightarrow`, or `\Longrightarrow` as proof shorthand. State the reason or use ordinary wording.
 - Basic cause-and-effect may use `∵` and `∴`. In LaTeX, prefer `$\because$` and `$\therefore$` or define safe Unicode mappings so the glyphs render in the math font.
-- Keep every line left aligned. Do not indent formulas to form decorative centered blocks.
+- Keep every formal line left aligned. Do not indent formulas to form decorative centered blocks.
+- If one formal line or aligned derivation is too wide for the left column, let that step use the full width and put its explanation immediately below it. Resume paired columns for the next step.
 
 ## Explanatory commentary
 
-For calculation, experiment, proof, geometry, circuit-design, and other long solutions, put independently authored commentary immediately after the formal line it explains. Keep it left aligned and, when useful, use a smaller muted secondary red. Do not use a two-column layout by default. Commentary may unpack transitions omitted by the standard answer, but it must not alter the formal steps or introduce a conflicting method. The commentary should answer one or more of:
+For calculation, experiment, proof, geometry, circuit-design, and other long solutions, put independently authored commentary in the right column beside the formal line it explains. Use a smaller muted secondary red so the two roles remain visually distinct. Commentary is required when it materially helps understanding; it may unpack transitions omitted by the standard answer, but it must not alter the formal steps or introduce a conflicting method. When a row is too wide, place that row's commentary immediately below the formal line instead of shrinking or omitting it. The commentary should answer one or more of:
 
 - Why is this relation or construction allowed?
 - Where did this value come from?
